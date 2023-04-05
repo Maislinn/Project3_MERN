@@ -18,6 +18,10 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 
+// 🦄 rbk: uncomment to test modal
+// import MyVerticallyCenteredModal from './components/ConfirmBooking';
+// import Button from 'react-bootstrap/Button';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -37,6 +41,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// 🦄 rbk: comment out to test modal
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -80,5 +85,24 @@ function App() {
     </ApolloProvider>
   );
 }
+
+
+// 🦄 rbk: uncomment to test modal
+// function App() {
+//   const [modalShow, setModalShow] = React.useState(false);
+
+//   return (
+//     <>
+//       <Button variant="primary" onClick={() => setModalShow(true)}>
+//         Launch vertically centered modal
+//       </Button>
+
+//       <MyVerticallyCenteredModal
+//         show={modalShow}
+//         onHide={() => setModalShow(false)}
+//       />
+//     </>
+//   );
+// }
 
 export default App;
