@@ -37,6 +37,7 @@ function OwnerProfile() {
                 {user ? (
                     <>
                         <h1>{user.name}'s Profile</h1>
+                        <img alt={user.name} src={`/images/${user.avatar}`} />
                         <p>Email: {user.email}</p>
                         <p>Location: {user.location}</p>
                         <h3>Pet Information</h3>
