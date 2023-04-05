@@ -7,13 +7,13 @@ const typeDefs = gql`
   }
 
   type Product {
-    _id: ID
-    name: String
+    # ❄️ MX: added product type: ⤵️
+    _id: ID!
+    name: String!
     description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+    price: Float!
+    services: [String!]
+    # ❄️ MX: added product type: ⤴️
   }
 
   type Order {
@@ -41,8 +41,12 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String): [Product]
+
+    # ❄️ MX: added products query: ⤵️
+    products: [Product!]!
     product(_id: ID!): Product
+    # ❄️ MX: added product query: ⤴️
+
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
@@ -52,7 +56,13 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(products: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    
+    # ❄️ MX: added product mutation: ⤵️
+    createProduct(name: String!, description: String, price: Float!, services: [String!]!): Product!
+    updateProduct(id: ID!, name: String, description: String, price: Float, services: [String]): Product
+    deleteProduct(id: ID!): Product
+    # ❄️ MX: added product mutation: ⤴️
+
     login(email: String!, password: String!): Auth
   }
 `;
