@@ -1,23 +1,19 @@
-import React from 'react';
-import Flatpickr from 'react-flatpickr';
+import React, { useState } from 'react';
+// calendar datepicker package with styling
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
-const CustomInput = ({ value, defaultValue, inputRef, ...props }) => {
-  return <input {...props} defaultValue={defaultValue} ref={inputRef} />;
-};
+export default function BookingForm() {
+    // useState variable for calendar date
+    const [value, onChange] = useState(new Date());
 
-export default function App() {
-  return (
-    <Flatpickr
-      render={
-        ({defaultValue, value, ...props}, ref) => {
-          return <CustomInput defaultValue={defaultValue} inputRef={ref} />
-        }
-      }
-    />
-  )
+    return (
+      <container>
+        <Calendar onChange={onChange} value={value}/>
+      </container>
+    );
 }
 
-// export default BookingForm;
 
 
 
