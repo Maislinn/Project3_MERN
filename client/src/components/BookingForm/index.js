@@ -10,8 +10,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // import components from react-bootstrap
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import "./styles.css";
 
 
 // would be nice to have an icon show up in the input field but maybe just next to it for now?
@@ -19,9 +20,9 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function BookingForm(props) {
     // useState for modal
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    // const [show, setShow] = useState(false);
+    // const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
 
     // useState for date picker
     const [dateRange, setDateRange] = useState([null, null]);
@@ -36,59 +37,62 @@ export default function BookingForm(props) {
     // };
 
     // function for form submit 22.22 ./
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-          const mutationResponse = await login({
-            variables: { email: formState.email, password: formState.password },
-          });
-          const token = mutationResponse.data.login.token;
-          Auth.login(token);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-    
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-          ...formState,
-          [name]: value,
-        });
-      };
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //       const mutationResponse = await login({
+    //         variables: { email: formState.email, password: formState.password },
+    //       });
+    //       const token = mutationResponse.data.login.token;
+    //       Auth.login(token);
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
+    //   };
+
+    //   const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setFormState({
+    //       ...formState,
+    //       [name]: value,
+    //     });
+    //   };
+
+
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Book Now
-            </Button>
-
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
                 <Modal.Header closeButton>
-                    <Modal.Title>
-                        {/* {service.name} */}
-                        {/* add name of selected service as title once models and queries are set */}
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Modal heading
                     </Modal.Title>
                 </Modal.Header>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-
-                        <DatePicker
-                            selectsRange={true}
-                            startDate={startDate}
-                            endDate={endDate}
-                            onChange={(update) => {
-                                setDateRange(update);
-                            }}
-                            // isClearable={true}
-                            onClickOutside={handleClose}
-                        />
-
-                    </Form.Group>
-                </Form>
+                <Modal.Body>
+                    <h4>Centered Modal</h4>
+                    <p>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+                    </p>
+                    <DatePicker
+                        selectsRange={true}
+                        startDate={startDate}
+                        endDate={endDate}
+                        onChange={(update) => {
+                            setDateRange(update);
+                        }}
+                        onClickOutside={true}
+                        showIcon
+                    />
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
-                    <Button variant="primary">Save changes</Button>
+                    <Button onClick={props.onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </>

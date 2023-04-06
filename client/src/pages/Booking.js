@@ -1,6 +1,5 @@
 import React from "react";
-// import BookingForm from "../components/BookingForm";
-import TestModal from '../components/TestModal';
+import BookingForm from "../components/BookingForm";
 import Button from 'react-bootstrap/Button';
 
 function Booking() {
@@ -12,7 +11,7 @@ function Booking() {
               Launch vertically centered modal
             </Button>
       
-            <TestModal
+            <BookingForm
               show={modalShow}
               onHide={() => setModalShow(false)}
             />
