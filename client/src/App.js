@@ -16,10 +16,12 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
+import serviceHistory from './pages/serviceHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+  //Insert in Herpoku link here when deployed to Heroku
+  //uri:'https://petpal.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -62,8 +64,8 @@ function App() {
                 element={<Success />} 
               />
               <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
+                path="/serviceHistory" 
+                element={<serviceHistory />} 
               />
               <Route 
                 path="/products/:id" 
