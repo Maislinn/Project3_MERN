@@ -18,6 +18,9 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import ServiceHistory from './pages/ServiceHistory';
 
+// 🦄 rbk: import BookingForm
+import Booking from './pages/Booking';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
   //Insert in Herpoku link here when deployed to Heroku
@@ -75,6 +78,10 @@ function App() {
               <Route
                 path="*" 
                 element={<NoMatch />} 
+              />
+              <Route 
+                path="/booking"
+                element={<Booking />}
               />
             </Routes>
           </StoreProvider>
