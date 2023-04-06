@@ -8,6 +8,9 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// import format from date-fns 
+import format from "date-fns/format";
+
 // import components from react-bootstrap
 import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
@@ -25,8 +28,23 @@ export default function BookingForm(props) {
     // const handleClose = () => setShow(false);
 
     // useState for date picker
-    const [dateRange, setDateRange] = useState([null, null]);
-    const [startDate, endDate] = dateRange;
+    // const [dateRange, setDateRange] = useState([null, null]);
+    // const [startDate, endDate] = dateRange;
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(null);
+    const onChange = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
+
+    const formatDate = (start, end=null) => {
+        if (!end) {
+            return format(new Date(startDate), "PP");  
+        }
+        return `${format(new Date(startDate), "PP")}-${format(new Date(endDate), "PP")}`
+    };
+
 
     // 🦄 rbk to-do: function to retrieve service data
     // const { data } = useQuery(QUERY_USER);
@@ -70,7 +88,7 @@ export default function BookingForm(props) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Modal heading
+                        {/* add name of selected service as title */}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -80,16 +98,28 @@ export default function BookingForm(props) {
                         dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
                         consectetur ac, vestibulum at eros.
                     </p>
+                    {/* date range - render if extended care selected */}
                     <DatePicker
-                        selectsRange={true}
+                        selected={startDate}
+                        onChange={onChange}
                         startDate={startDate}
                         endDate={endDate}
-                        onChange={(update) => {
-                            setDateRange(update);
-                        }}
-                        onClickOutside={true}
-                        showIcon
+                        selectsRange
+                        inline
                     />
+                    {/* formate date to print to page */}
+                    {/* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */}
+                    <p>{formatDate(startDate, endDate)}</p>
+
+                    {/* single day - render if drop-in selected */}
+                    {/* <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        inline
+                    />
+                    <p>{`${startDate}-${endDate}`}</p> */}
+
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Close</Button>
