@@ -18,10 +18,6 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import ServiceHistory from './pages/ServiceHistory';
 
-// 🦄 rbk: uncomment to test modal
-// import MyVerticallyCenteredModal from './components/ConfirmBooking';
-// import Button from 'react-bootstrap/Button';
-
 const httpLink = createHttpLink({
   uri: '/graphql',
   //Insert in Herpoku link here when deployed to Heroku
@@ -88,23 +84,5 @@ function App() {
   );
 }
 
-
-// 🦄 rbk: uncomment to test modal
-// function App() {
-//   const [modalShow, setModalShow] = React.useState(false);
-
-//   return (
-//     <>
-//       <Button variant="primary" onClick={() => setModalShow(true)}>
-//         Launch vertically centered modal
-//       </Button>
-
-//       <MyVerticallyCenteredModal
-//         show={modalShow}
-//         onHide={() => setModalShow(false)}
-//       />
-//     </>
-//   );
-// }
 
 export default App;
