@@ -30,7 +30,7 @@ export default function BookingForm(props) {
     // useState for date picker
     // const [dateRange, setDateRange] = useState([null, null]);
     // const [startDate, endDate] = dateRange;
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const onChange = (dates) => {
         const [start, end] = dates;
@@ -38,12 +38,13 @@ export default function BookingForm(props) {
         setEndDate(end);
     };
 
-    const formatDate = (start, end=null) => {
-        if (!end) {
-            return format(new Date(startDate), "PP");  
-        }
-        return `${format(new Date(startDate), "PP")}-${format(new Date(endDate), "PP")}`
+    {/* formate date to print to page */ }
+    {/* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */ }
+    const formatDate = (date) => {
+            return format(new Date(startDate), "PP");
     };
+
+    const [dateRange, setRange] = useState(new Range())
 
 
     // 🦄 rbk to-do: function to retrieve service data
@@ -99,17 +100,19 @@ export default function BookingForm(props) {
                         consectetur ac, vestibulum at eros.
                     </p>
                     {/* date range - render if extended care selected */}
+                    <div>
+                    <h3>Selected dates:</h3>
+                    <p>{`${formatDate(startDate)}-${formatDate(endDate)}`}</p>
+                    </div>
                     <DatePicker
-                        selected={startDate}
+                        // selected={startDate}
                         onChange={onChange}
                         startDate={startDate}
                         endDate={endDate}
                         selectsRange
                         inline
                     />
-                    {/* formate date to print to page */}
-                    {/* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */}
-                    <p>{formatDate(startDate, endDate)}</p>
+
 
                     {/* single day - render if drop-in selected */}
                     {/* <DatePicker
