@@ -16,14 +16,12 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
-
-// 🦄 rbk: uncomment to test modal
-// import MyVerticallyCenteredModal from './components/ConfirmBooking';
-// import Button from 'react-bootstrap/Button';
+import ServiceHistory from './pages/ServiceHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+  //Insert in Herpoku link here when deployed to Heroku
+  //uri:'https://petpal.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -67,8 +65,8 @@ function App() {
                 element={<Success />} 
               />
               <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
+                path="/serviceHistory" 
+                element={<ServiceHistory />} 
               />
               <Route 
                 path="/products/:id" 
@@ -86,23 +84,5 @@ function App() {
   );
 }
 
-
-// 🦄 rbk: uncomment to test modal
-// function App() {
-//   const [modalShow, setModalShow] = React.useState(false);
-
-//   return (
-//     <>
-//       <Button variant="primary" onClick={() => setModalShow(true)}>
-//         Launch vertically centered modal
-//       </Button>
-
-//       <MyVerticallyCenteredModal
-//         show={modalShow}
-//         onHide={() => setModalShow(false)}
-//       />
-//     </>
-//   );
-// }
 
 export default App;
