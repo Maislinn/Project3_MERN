@@ -75,13 +75,13 @@ function App() {
                 path="/products/:id" 
                 element={<Detail />} 
               />
+                <Route 
+                  path="/booking"
+                  element={<Booking />}
+                />
               <Route
                 path="*" 
                 element={<NoMatch />} 
-              />
-              <Route 
-                path="/booking"
-                element={<Booking />}
               />
             </Routes>
           </StoreProvider>

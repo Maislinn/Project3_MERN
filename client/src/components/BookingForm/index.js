@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-// calendar datepicker package with styling
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 
-export default function BookingForm() {
-    // useState variable for calendar date
-    const [value, onChange] = useState(new Date());
+import "react-datepicker/dist/react-datepicker.css";
+
+// would be nice to have an icon show up in the input field but maybe just next to it for now?
+// import { FaCalendarDay, FaCalendarWeek} from "react-icons/fa";
+
+export default function Example() {
+    // use state variables for date picker
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
 
     return (
-      <container>
-        <Calendar onChange={onChange} value={value}/>
-      </container>
+      <DatePicker
+        selectsRange={true}
+        startDate={startDate}
+        endDate={endDate}
+        onChange={(update) => {
+          setDateRange(update);
+        }}
+        isClearable={true}
+      />
     );
-}
-
-
-
-
-
-
-// form component with datepicker
-// fetch available services from db and render to form with icon as button?
-// 
+};
