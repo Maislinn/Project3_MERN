@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-function serviceHistory() {
+function ServiceHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -49,4 +49,4 @@ function serviceHistory() {
   );
 }
 
-export default serviceHistory;
+export default ServiceHistory;
