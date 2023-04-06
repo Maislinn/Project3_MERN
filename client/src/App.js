@@ -16,7 +16,7 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
-import serviceHistory from './pages/serviceHistory';
+import ServiceHistory from './pages/ServiceHistory';
 
 // 🦄 rbk: uncomment to test modal
 // import MyVerticallyCenteredModal from './components/ConfirmBooking';
@@ -70,7 +70,7 @@ function App() {
               />
               <Route 
                 path="/serviceHistory" 
-                element={<serviceHistory />} 
+                element={<ServiceHistory />} 
               />
               <Route 
                 path="/products/:id" 
