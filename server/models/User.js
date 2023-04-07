@@ -25,7 +25,24 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  orders: [Order.schema]
+  orders: [Order.schema],
+  // Lian: added location, avatar and pets ⤵️
+  location: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  avatar: {
+    type: String,
+    required: false,
+  },
+  pets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Pet'
+    }
+  ]
+  // Lian: added location, avatar and pets ⤴️
 });
 
 // set up pre-save middleware to create password

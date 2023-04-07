@@ -28,6 +28,20 @@ function OwnerProfile() {
             type: "Dog",
             breed: "Golden Retriever",
             age: 5,
+        }],
+        orders: [{
+            purchaseDate: "2021-01-01",
+            services: [{
+                name: "Grooming",
+                price: 50,
+                description: "A full grooming service for your pet.",
+            },
+            {
+                name: "Walking",
+                price: 20,
+                description: "A 30 minute walk for your pet.",
+            }]
+
         }]
     };
 
