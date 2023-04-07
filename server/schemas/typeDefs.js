@@ -7,13 +7,11 @@ const typeDefs = gql`
   }
 
   type Product {
-    # ❄️ MX: added product type: ⤵️
-    _id: ID!
-    name: String!
+    _id: ID
+    name: String
     description: String
-    price: Float!
-    services: [String!]
-    # ❄️ MX: added product type: ⤴️
+    price: Float
+    services: [String]
   }
 
   type Order {
@@ -42,10 +40,8 @@ const typeDefs = gql`
   type Query {
     categories: [Category]
 
-    # ❄️ MX: added products query: ⤵️
-    products: [Product!]!
-    product(_id: ID!): Product
-    # ❄️ MX: added product query: ⤴️
+    products: [Product]
+    product(productId: ID!): Product
 
     user: User
     order(_id: ID!): Order
