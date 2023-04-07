@@ -18,7 +18,11 @@ const productSchema = new Schema({
   },
   services: [{
     type: String
-  }]
+  }],
+  categories: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);
