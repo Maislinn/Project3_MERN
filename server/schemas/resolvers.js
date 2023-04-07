@@ -86,7 +86,6 @@ const resolvers = {
     }
   },
 
-
   Mutation: {
     // ❄️ MX-TODO ⏰: update order&user mutations ⤵️
     addUser: async (parent, args) => {
