@@ -16,6 +16,7 @@ function OwnerProfile() {
         name: "John Doe",
         email: "john.doe@example.com",
         location: "New York, NY",
+        avatar: "Man-with-Cat-2.jpg",
         pets: [{
             name: "Buddy",
             type: "Dog",
