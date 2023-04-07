@@ -38,13 +38,19 @@ export default function BookingForm(props) {
         setEndDate(end);
     };
 
-    {/* formate date to print to page */ }
-    {/* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */ }
-    const formatDate = (date) => {
+    /* formate date to print to page */ 
+    /* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */ 
+    const formatDate = (start = null, end = null) => {
+        if (!start && !end) {
+            return;
+        }
+        else if (!end) {
             return format(new Date(startDate), "PP");
+        }
+        return `${format(new Date(startDate), "PP")}-${format(new Date(endDate), "PP")}`
+
     };
 
-    const [dateRange, setRange] = useState(new Range())
 
 
     // 🦄 rbk to-do: function to retrieve service data
@@ -78,7 +84,7 @@ export default function BookingForm(props) {
     //   };
 
 
-
+// button for modal is currently in APP
     return (
         <>
             <Modal
@@ -89,10 +95,11 @@ export default function BookingForm(props) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {/* add name of selected service as title */}
+                        Book your cat sitter
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                        {/* add name of selected service as title */}
                     <h4>Centered Modal</h4>
                     <p>
                         Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
@@ -100,27 +107,29 @@ export default function BookingForm(props) {
                         consectetur ac, vestibulum at eros.
                     </p>
                     {/* date range - render if extended care selected */}
-                    <div>
+                    {/* <div>
                     <h3>Selected dates:</h3>
-                    <p>{`${formatDate(startDate)}-${formatDate(endDate)}`}</p>
-                    </div>
+                    <p>{formatDate(startDate, endDate)}</p>
                     <DatePicker
-                        // selected={startDate}
                         onChange={onChange}
                         startDate={startDate}
                         endDate={endDate}
                         selectsRange
                         inline
-                    />
+                        />
+                    </div> */}
 
 
                     {/* single day - render if drop-in selected */}
-                    {/* <DatePicker
+                    <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
+                        startDate={startDate}
+                        // endDate={endDate}
+                        // selectsRange={false}
                         inline
                     />
-                    <p>{`${startDate}-${endDate}`}</p> */}
+                    <p>{formatDate(startDate)}</p>
 
 
                 </Modal.Body>
