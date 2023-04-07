@@ -16,10 +16,12 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
+import ServiceHistory from './pages/ServiceHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+  //Insert in Herpoku link here when deployed to Heroku
+  //uri:'https://petpal.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -37,6 +39,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// 🦄 rbk: comment out to test modal
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -62,8 +65,8 @@ function App() {
                 element={<Success />} 
               />
               <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
+                path="/serviceHistory" 
+                element={<ServiceHistory />} 
               />
               <Route 
                 path="/products/:id" 
@@ -80,5 +83,6 @@ function App() {
     </ApolloProvider>
   );
 }
+
 
 export default App;
