@@ -16,6 +16,7 @@ const typeDefs = gql`
     # ❄️ MX: added product type: ⤴️
   }
 
+  # ❄️ MX-TODO ⏰: check order&user type ⤵️
   type Order {
     _id: ID
     purchaseDate: String
@@ -29,6 +30,7 @@ const typeDefs = gql`
     email: String
     orders: [Order]
   }
+  # ❄️ MX-TODO ⏰: check order&user type ⤴️
 
   type Checkout {
     session: ID
@@ -53,6 +55,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    # ❄️ MX-TODO ⏰: check order&user mutation type ⤵️
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(products: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User

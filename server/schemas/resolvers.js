@@ -19,6 +19,7 @@ const resolvers = {
     // ❄️ MX: add products query ⤴️
 
 
+    // ❄️ MX-TODO ⏰: update user & order queries ⤵️
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -45,6 +46,8 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    // ❄️ MX-TODO ⏰: update user & order queries ⤴️
+
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ products: args.products });
@@ -85,6 +88,7 @@ const resolvers = {
 
 
   Mutation: {
+    // ❄️ MX-TODO ⏰: update order&user mutations ⤵️
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
@@ -110,6 +114,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    // ❄️ MX-TODO ⏰: update order&user mutations ⤴️
 
      // ❄️ MX: add products mutation: add, update, delete ⤵️
       addProduct: async (parent, args) => {
@@ -127,6 +132,7 @@ const resolvers = {
       },
       // ❄️ MX: add products mutation: add, update, delete ⤴️
 
+    // ❄️ MX-TODO ⏰: test login mutation ⤵️
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
