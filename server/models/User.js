@@ -29,7 +29,8 @@ const userSchema = new Schema({
   // Lian: added location, avatar and pets ⤵️
   location: {
     type: String,
-    required: true,
+    // ❄️ MX: commented out for seeding data, can be added back when needed ⤵️
+    // required: true,
     trim: true
   },
   avatar: {

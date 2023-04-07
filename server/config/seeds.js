@@ -69,10 +69,11 @@ db.once("open", async () => {
     lastName: "Washington",
     email: "pamela@testmail.com",
     password: "password12345",
+    location: "New York, NY",
     orders: [
       {
-        // ❄️MX-TODO: check the code ⤵️ ⚠️ showed randomly id ⚠️
-        products: [products[0].ObjectId],
+        // ❄️MX-TODO: check the code ⤵️ 
+        products: [products[0]._id],
       },
     ],
   });
