@@ -38,6 +38,7 @@ export default function BookingForm(props) {
         setEndDate(end);
     };
 
+    
     /* formate date to print to page */ 
     /* https://github.com/Hacker0x01/react-datepicker/issues/1737#issuecomment-501671356 */ 
     const formatDate = (start = null, end = null) => {
@@ -107,7 +108,7 @@ export default function BookingForm(props) {
                         consectetur ac, vestibulum at eros.
                     </p>
                     {/* date range - render if extended care selected */}
-                    {/* <div>
+                    <div>
                     <h3>Selected dates:</h3>
                     <p>{formatDate(startDate, endDate)}</p>
                     <DatePicker
@@ -117,19 +118,19 @@ export default function BookingForm(props) {
                         selectsRange
                         inline
                         />
-                    </div> */}
+                    </div>
 
 
                     {/* single day - render if drop-in selected */}
-                    <DatePicker
-                        selected={startDate}
+                    {/* <DatePicker
+                        // selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         startDate={startDate}
-                        // endDate={endDate}
+                        endDate={endDate}
                         // selectsRange={false}
                         inline
                     />
-                    <p>{formatDate(startDate)}</p>
+                    <p>{formatDate(startDate)}</p> */}
 
 
                 </Modal.Body>
