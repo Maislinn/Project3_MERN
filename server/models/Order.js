@@ -7,11 +7,11 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  // ❄️MX: added services array: ⤵️
-  services: [
+  // ❄️MX-TODO: check the code ⤵️
+  products: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Service'
+      ref: 'Product'
     }
   ]
 });

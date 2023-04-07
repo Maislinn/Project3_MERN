@@ -9,30 +9,20 @@ const resolvers = {
       return await Category.find();
     },
 
-    products: async () => await Product.find(),
+    // ❄️ MX: add products query ⤵️
+    products: async () => {
+      return await Product.find();
+    },
+    product: async (parent, { _id }) => {
+      return await Product.findById(id);
+    },
+    // ❄️ MX: add products query ⤴️
 
-    // ❄️ MX-TODO: add products query & mutation ⏰
-    // products: async (parent, { category, name }) => {
-    //   const params = {};
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
-
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name
-    //     };
-    //   }
-    //   return await Product.find(params).populate('category');
-    // },
-    // product: async (parent, { _id }) => {
-    //   return await Product.findById(_id).populate('category');
-    // },
-
-    user: async (parent, {id}) => {
-      // if (context.user) {
-        const user = await User.findById({id}).populate({
+    // ❄️ MX-TODO ⏰: update user & order queries ⤵️
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
           path: 'orders.products',
           populate: 'category'
         });
@@ -54,11 +44,12 @@ const resolvers = {
 
       // throw new AuthenticationError('Not logged in');
     },
-  };
-  //   checkout: async (parent, args, context) => {
-  //     const url = new URL(context.headers.referer).origin;
-  //     const order = new Order({ products: args.products });
-  //     const line_items = [];
+    // ❄️ MX-TODO ⏰: update user & order queries ⤴️
+
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ products: args.products });
+      const line_items = [];
 
   //     const { products } = await order.populate('products');
 
@@ -89,13 +80,16 @@ const resolvers = {
   //       cancel_url: `${url}/`
   //     });
 
-  //     return { session: session.id };
-  //   }
-  // },
-  // Mutation: {
-  //   addUser: async (parent, args) => {
-  //     const user = await User.create(args);
-  //     const token = signToken(user);
+      return { session: session.id };
+    }
+  },
+
+
+  Mutation: {
+    // ❄️ MX-TODO ⏰: update order&user mutations ⤵️
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
   //     return { token, user };
   //   },
@@ -116,15 +110,29 @@ const resolvers = {
   //       return await User.findByIdAndUpdate(context.user._id, args, { new: true });
   //     }
 
-  //     throw new AuthenticationError('Not logged in');
-  //   },
-  //   updateProduct: async (parent, { _id, quantity }) => {
-  //     const decrement = Math.abs(quantity) * -1;
+      throw new AuthenticationError('Not logged in');
+    },
+    // ❄️ MX-TODO ⏰: update order&user mutations ⤴️
 
-  //     return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-  //   },
-  //   login: async (parent, { email, password }) => {
-  //     const user = await User.findOne({ email });
+     // ❄️ MX: add products mutation: add, update, delete ⤵️
+      addProduct: async (parent, args) => {
+        const product = await Product.create(args);
+        await product.save();
+        return product;
+      },
+
+      updateProduct: async (parent, { _id, ...args }) => {
+        return await Product.findByIdAndUpdate(id, update, { new: true });
+      },
+
+      deleteProduct: async (parent, { _id }) => {
+        return await Product.findByIdAndRemove(id);
+      },
+      // ❄️ MX: add products mutation: add, update, delete ⤴️
+
+    // ❄️ MX-TODO ⏰: test login mutation ⤵️
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
   //     if (!user) {
   //       throw new AuthenticationError('Incorrect credentials');

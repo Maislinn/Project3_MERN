@@ -53,6 +53,17 @@ export const QUERY_USER = gql`
     user {
       firstName
       lastName
+      avatar
+      email
+      location
+      pets {
+        _id
+        name
+        type
+        breed
+        age
+        image
+      }
       orders {
         _id
         purchaseDate

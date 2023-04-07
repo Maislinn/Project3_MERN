@@ -16,6 +16,7 @@ function OwnerProfile() {
         name: "John Doe",
         email: "john.doe@example.com",
         location: "New York, NY",
+        avatar: "Man-with-Cat-2.jpg",
         pets: [{
             name: "Buddy",
             type: "Dog",
@@ -27,6 +28,20 @@ function OwnerProfile() {
             type: "Dog",
             breed: "Golden Retriever",
             age: 5,
+        }],
+        orders: [{
+            purchaseDate: "2021-01-01",
+            services: [{
+                name: "Grooming",
+                price: 50,
+                description: "A full grooming service for your pet.",
+            },
+            {
+                name: "Walking",
+                price: 20,
+                description: "A 30 minute walk for your pet.",
+            }]
+
         }]
     };
 
@@ -37,6 +52,7 @@ function OwnerProfile() {
                 {user ? (
                     <>
                         <h1>{user.name}'s Profile</h1>
+                        <img alt={user.name} src={`/images/${user.avatar}`} />
                         <p>Email: {user.email}</p>
                         <p>Location: {user.location}</p>
                         <h3>Pet Information</h3>
