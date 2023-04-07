@@ -9,24 +9,15 @@ const resolvers = {
       return await Category.find();
     },
 
-    // ❄️ MX-TODO: add products query & mutation ⏰
-    // products: async (parent, { category, name }) => {
-    //   const params = {};
+    // ❄️ MX: add products query ⤵️
+    products: async () => {
+      return await Product.find();
+    },
+    product: async (parent, { _id }) => {
+      return await Product.findById(id);
+    },
+    // ❄️ MX: add products query ⤴️
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
-
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name
-    //     };
-    //   }
-    //   return await Product.find(params).populate('category');
-    // },
-    // product: async (parent, { _id }) => {
-    //   return await Product.findById(_id).populate('category');
-    // },
 
     user: async (parent, args, context) => {
       if (context.user) {
@@ -91,6 +82,8 @@ const resolvers = {
       return { session: session.id };
     }
   },
+
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -117,11 +110,23 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    },
+     // ❄️ MX: add products mutation: add, update, delete ⤵️
+      addProduct: async (parent, args) => {
+        const product = await Product.create(args);
+        await product.save();
+        return product;
+      },
+
+      updateProduct: async (parent, { _id, ...args }) => {
+        return await Product.findByIdAndUpdate(id, update, { new: true });
+      },
+
+      deleteProduct: async (parent, { _id }) => {
+        return await Product.findByIdAndRemove(id);
+      },
+      // ❄️ MX: add products mutation: add, update, delete ⤴️
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
