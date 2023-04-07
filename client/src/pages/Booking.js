@@ -5,20 +5,20 @@ import Button from 'react-bootstrap/Button';
 
 
 function Booking() {
-        const [modalShow, setModalShow] = React.useState(false);
-      
-        return (
-          <>
+    const [modalShow, setModalShow] = React.useState(false);
+
+    return (
+        <>
             <Button variant="primary" onClick={() => setModalShow(true)}>
-              Launch vertically centered modal
+                Schedule now!
             </Button>
-      
+
             <BookingForm
-              show={modalShow}
-              onHide={() => setModalShow(false)}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
             />
-          </>
-        );
-      }
+        </>
+    );
+}
 
 export default Booking;
