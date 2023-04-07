@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_USER } from '../../utils/queries';
 
 function OwnerProfile() {
     const { ownerUserData } = useQuery(QUERY_USER);
@@ -13,6 +13,7 @@ function OwnerProfile() {
     } else { user = dummyUser; }
 
     const dummyUser = {
+        _id: "1",
         name: "John Doe",
         email: "john.doe@example.com",
         location: "New York, NY",
