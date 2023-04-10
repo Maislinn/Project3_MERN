@@ -72,8 +72,14 @@ export const QUERY_USER = gql`
           name
           description
           price
-          quantity
-          image
+          services {
+            _id
+            name
+          }
+          categories {
+            _id
+            name
+          }
         }
       }
     }

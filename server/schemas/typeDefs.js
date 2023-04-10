@@ -57,7 +57,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     
     # ❄️ MX: added product mutation: ⤵️
-    createProduct(name: String!, description: String, price: Float!, services: [String!]!): Product!
+    addProduct(name: String!, description: String, price: Float!, services: [String!]!): Product!
     updateProduct(id: ID!, name: String, description: String, price: Float, services: [String]): Product
     deleteProduct(id: ID!): Product
     # ❄️ MX: added product mutation: ⤴️
