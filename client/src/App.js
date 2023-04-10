@@ -21,6 +21,7 @@ import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import ServiceHistory from './pages/Users/ServiceHistory';
+import OwnerProfile from './pages/Users/OwnerProfile';
 
 // 🦄 rbk: import BookingForm
 import Booking from './pages/Booking';
@@ -63,6 +64,8 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path="/serviceHistory"  element={<ServiceHistory />} />
               <Route path="/products/:id" element={<Detail />}  />
+              {/* Added the path below to test the page */}
+              <Route path="/owners/:id" element={<OwnerProfile />}  />
               <Route path="*" 
                 element={<NoMatch />} 
               />
