@@ -65,6 +65,13 @@ function ProductItem(item) {
       </div>
       {/* <Booking /> */}
       {/* <button onClick={addToCart}>Add to cart</button> */}
+      <Link to={`/products/${_id}`}><button>
+        {/* <img
+          alt={name}
+          src={`/images/${image}`}
+        /> */}
+        <p>Click here for more information or to schedule {name}</p>
+        </button></Link>
     </div>
   );
 }
