@@ -1,6 +1,7 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import ReactDatePicker from "react-datepicker";
 
 export default function SelectDates(props) {
   return (
@@ -13,6 +14,7 @@ export default function SelectDates(props) {
 
         <Modal.Body>
           <p>Modal body text goes here.</p>
+          <ReactDatePicker />
         </Modal.Body>
 
         <Modal.Footer>

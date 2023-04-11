@@ -53,6 +53,7 @@ function ProductList() {
               key={product._id}
               _id={product._id}
               name={product.name}
+              image={product.image}
               description={product.description}
               price={product.price}
               services={product.services}

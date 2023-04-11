@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { pluralize } from "../../utils/helpers"
+// import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
-import { idbPromise } from "../../utils/helpers";
-import Booking from "../../components/ConfirmBooking/index";
+// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+// import { idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
@@ -12,6 +11,7 @@ function ProductItem(item) {
   const {
     _id,
     name,
+    image,
     description,
     price,
     // services
@@ -51,10 +51,10 @@ function ProductItem(item) {
     <div className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
         {/* 🦄 rbk: add img info to const above as well as product list to render */}
-        {/* <img
+        <img
           alt={name}
           src={`/images/${image}`}
-        /> */}
+        />
         <p>{name}</p>
       </Link>
       <div>

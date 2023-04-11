@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-function Booking() {
+function SelectDates() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,7 +12,7 @@ function Booking() {
     return (
       <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Select Dates
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -33,4 +33,4 @@ function Booking() {
     );
 }
 
-export default Booking;
+export default SelectDates;
