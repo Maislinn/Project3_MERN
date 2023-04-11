@@ -51,17 +51,22 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    # ❄️ MX-TODO ⏰: check order&user mutation type ⤵️
+    # ❄️ MX: addUser 🧪✅
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+
+    # ❄️ MX: addOrder - ⏰: 🧪
     addOrder(products: [ID]!): Order
+
+    # ❄️ MX: updateUser - ⏰: 🧪
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     
-    # ❄️ MX: added product mutation: ⤵️
+    # ❄️ MX: add/update/delete 🧪✅
     addProduct(name: String!, description: String, price: Float!, services: [String!]!): Product!
     updateProduct(id: ID!, name: String, description: String, price: Float, services: [String]): Product
     deleteProduct(id: ID!): Product
     # ❄️ MX: added product mutation: ⤴️
 
+    # ❄️ MX: login 🧪✅
     login(email: String!, password: String!): Auth
   }
 `;
