@@ -57,8 +57,8 @@ export const EDIT_USER = gql`
     $email: String!
     $location: String!
     $avatar: String!
+    $oldPassword: String!
     $password: String!
-
   ) {
     editUser(
       firstName: $firstName
@@ -66,6 +66,7 @@ export const EDIT_USER = gql`
       email: $email
       location: $location
       avatar: $avatar
+      oldPassword: $oldPassword
       password: $password
     ) {
       firstName
@@ -77,6 +78,7 @@ export const EDIT_USER = gql`
     }
   }
 `;
+
 
 export const REMOVE_USER = gql`
   mutation removeUser($userId: ID!) {

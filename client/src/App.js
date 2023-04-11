@@ -22,9 +22,6 @@ import Success from './pages/Success';
 import ServiceHistory from './pages/Users/ServiceHistory';
 import OwnerProfile from './pages/Users/OwnerProfile';
 
-// 🦄 rbk: import BookingForm
-// import Booking from './pages/Booking';
-
 const httpLink = createHttpLink({
   uri: '/graphql',
   //Insert in Herpoku link here when deployed to Heroku
@@ -63,8 +60,7 @@ function App() {
               <Route path="/serviceHistory"  element={<ServiceHistory />} />
               <Route path="/products/:id" element={<Detail />}  />
               {/* Added the path below to test the page */}
-              <Route path="/owners/:id" element={<OwnerProfile />}  />
-              {/* <Route path="/booking" element={<Booking />} /> */}
+              <Route path="/ownerprofile" element={<OwnerProfile />}  />
               <Route path="*" 
                 element={<NoMatch />} 
               />
