@@ -16,6 +16,11 @@ function ProductItem(item) {
     services
   } = item;
 
+  // map services to render each as a <li>
+  const listServices =
+    services.map((service) =>
+      <li>{service}</li>);
+
   const { cart } = state
 
   const addToCart = () => {
@@ -50,7 +55,9 @@ function ProductItem(item) {
       </Link>
       <div>
         <span>{description}</span>
-        <span>{services}</span>
+        <ul>Services provided:
+        {listServices}
+        </ul>
         {/* <div>{quantity} {pluralize("item", quantity)} in stock</div> */}
         <span>${price}</span>
       </div>
