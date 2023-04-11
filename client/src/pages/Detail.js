@@ -95,7 +95,7 @@ function Detail() {
           <ul>
             {currentProduct.services?.map((service)=> 
             // 🔮rbk to-do: add key to li
-            <li>{service}</li>)}
+            <li key={service}>{service}</li>)}
           </ul>
 
           <p>
