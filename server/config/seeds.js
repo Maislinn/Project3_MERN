@@ -76,6 +76,7 @@ db.once("open", async () => {
     password: "password12345",
     location: "New York, NY",
     orders: [
+      // ❄️ MX: Each order should be represented by its own object in the orders array
       {
         products: [products[0]._id],
       },
