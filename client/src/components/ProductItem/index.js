@@ -4,6 +4,7 @@ import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import Booking from "../../components/ConfirmBooking/index";
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
@@ -17,7 +18,7 @@ function ProductItem(item) {
   } = item;
 
   // map services to render each as a <li>
-  // 🔮 will need unique key - revisit once server-side schema are complete
+  // 🔮 will need unique key added to <li> as key={_id}
   const listServices =
     services.map((service) =>
       <li>{service}</li>);
@@ -62,6 +63,7 @@ function ProductItem(item) {
         {/* <div>{quantity} {pluralize("item", quantity)} in stock</div> */}
         <span>${price}</span>
       </div>
+      <Booking />
       <button onClick={addToCart}>Add to cart</button>
     </div>
   );

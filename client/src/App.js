@@ -23,7 +23,7 @@ import ServiceHistory from './pages/Users/ServiceHistory';
 import OwnerProfile from './pages/Users/OwnerProfile';
 
 // 🦄 rbk: import BookingForm
-import Booking from './pages/Booking';
+// import Booking from './pages/Booking';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -64,7 +64,7 @@ function App() {
               <Route path="/products/:id" element={<Detail />}  />
               {/* Added the path below to test the page */}
               <Route path="/owners/:id" element={<OwnerProfile />}  />
-              <Route path="/booking" element={<Booking />} />
+              {/* <Route path="/booking" element={<Booking />} /> */}
               <Route path="*" 
                 element={<NoMatch />} 
               />
