@@ -94,7 +94,8 @@ function Detail() {
           <h3>Services Provided</h3>
           <ul>
             {currentProduct.services?.map((service)=> 
-            <li key={currentProduct._id}>{service}</li>)}
+            // 🔮rbk to-do: add key to li
+            <li>{service}</li>)}
           </ul>
 
           <p>
