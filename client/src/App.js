@@ -60,10 +60,10 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/success" element={<Success />} />
-              {/* <Route path="/serviceHistory"  element={<ServiceHistory />} /> */}
-              {/* <Route path="/products/:id" element={<Detail />}  /> */}
+              <Route path="/serviceHistory"  element={<ServiceHistory />} />
+              <Route path="/products/:id" element={<Detail />}  />
               {/* Added the path below to test the page */}
-              {/* <Route path="/owners/:id" element={<OwnerProfile />}  /> */}
+              <Route path="/owners/:id" element={<OwnerProfile />}  />
               <Route path="/booking" element={<Booking />} />
               <Route path="*" 
                 element={<NoMatch />} 
