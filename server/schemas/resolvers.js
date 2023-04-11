@@ -18,6 +18,8 @@ const resolvers = {
     },
     // ❄️ MX: add products query ⤴️
 
+// 🦄 rbk: added just to check users in apollo sandbox
+    users: async() => await User.find(),
 
     // ❄️ MX-TODO ⏰: update user & order queries ⤵️
     user: async (parent, args, context) => {

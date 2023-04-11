@@ -19,7 +19,7 @@ const typeDefs = gql`
     _id: ID
     purchaseDate: String
     products: [Product]
-  }
+  }  
 
   type User {
     _id: ID
@@ -44,6 +44,9 @@ const typeDefs = gql`
 
     products: [Product]
     product(productId: ID!): Product
+
+    # 🦄 rbk: added just to check users in apollo sandbox
+    users: [User]!
 
     user: User
     order(_id: ID!): Order

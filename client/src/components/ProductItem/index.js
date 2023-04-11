@@ -17,6 +17,7 @@ function ProductItem(item) {
   } = item;
 
   // map services to render each as a <li>
+  // 🔮 will need unique key - revisit once server-side schema are complete
   const listServices =
     services.map((service) =>
       <li>{service}</li>);
