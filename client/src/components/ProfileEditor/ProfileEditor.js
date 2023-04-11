@@ -56,27 +56,11 @@ const EditUserProfile = ({ userId }) => {
             console.error(error);
         }
     };
-    const handleSubmit = async (e) => {
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await updateUserProfile({
-                variables: {
-                    userId,
-                    profile: {
-                        firstName,
-                        lastName,
-                        email,
-                        password,
-                        location,
-                        avatar,
-                    },
-                },
-            });
-            console.log('Profile updated!');
-        } catch (error) {
-            console.error(error);
-        }
-    };
+        setShowModal(true);
+      };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error fetching user data</p>;
