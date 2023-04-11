@@ -34,21 +34,13 @@ function ProductList() {
   }, [data, loading, dispatch]);
 
   function filterProducts() {
-    // ❄️ MX: if there are no products, return an empty array
-    if (!state.products) {
-      return [];
-    }
+
     if (!currentCategory) {
       return state.products;
     }
 
-    // ❄️ MX: check for state.products
-    // console.log('state.products - filterProducts', state.products);
-
     return state.products.filter(
-      // ❄️ MX: updated the filterProducts() function to check for the existence of the category property on the product object
-      (product) => product.category?._id === currentCategory
-      // (product) => product.category._id === currentCategory
+      (product) => product.category._id === currentCategory
     );
   }
 
@@ -62,7 +54,6 @@ function ProductList() {
               key={product._id}
               _id={product._id}
               name={product.name}
-              image={product.image}
               description={product.description}
               price={product.price}
               services={product.services}

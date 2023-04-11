@@ -7,7 +7,7 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  // ❄️MX-TODO: check the code ⤵️
+
   products: [
     {
       type: Schema.Types.ObjectId,

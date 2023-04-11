@@ -15,21 +15,24 @@ const typeDefs = gql`
     services: [String]
   }
 
-  # ❄️ MX-TODO ⏰: check order&user type ⤵️
+  # ❄️ MX-TODO ⏰: check order type ⤵️
   type Order {
     _id: ID
     purchaseDate: String
     products: [Product]
-  }  
+  }
+  # ❄️ MX-TODO ⏰: check order type ⤴️
 
+  # ❄️ MX: updated user type based on user model ⤵️
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
     orders: [Order]
+    location: String
+    avatar: String
   }
-  # ❄️ MX-TODO ⏰: check order&user type ⤴️
 
   type Checkout {
     session: ID
@@ -55,17 +58,22 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    # ❄️ MX-TODO ⏰: check order&user mutation type ⤵️
+    # ❄️ MX: addUser 🧪✅
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+
+    # ❄️ MX: addOrder - ⏰: 🧪
     addOrder(products: [ID]!): Order
+
+    # ❄️ MX: updateUser - ⏰: 🧪
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     
-    # ❄️ MX: added product mutation: ⤵️
+    # ❄️ MX: add/update/delete 🧪✅
     addProduct(name: String!, description: String, price: Float!, services: [String!]!): Product!
     updateProduct(id: ID!, name: String, description: String, price: Float, services: [String]): Product
     deleteProduct(id: ID!): Product
     # ❄️ MX: added product mutation: ⤴️
 
+    # ❄️ MX: login 🧪✅
     login(email: String!, password: String!): Auth
   }
 `;
