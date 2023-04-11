@@ -10,31 +10,25 @@ import { idbPromise } from '../../utils/helpers';
 
 function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
-  // ❄️ MX: check for currentCategory
-  // console.log('state.currentCategory - CategoryMenu', state.currentCategory);
 
-  // ❄️ MX: added currentCategory to the destructuring assignment
-  const { categories, currentCategory } = state;
+  const { categories } = state;
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   useEffect(() => {
-    // ❄️ MX: added storeCategories() function
-    const storeCategories = async (categories) => {
-      await Promise.all(categories.map(category => idbPromise('categories', 'put', category)));
+    if (categoryData) {
       dispatch({
         type: UPDATE_CATEGORIES,
-        categories,
+        categories: categoryData.categories,
       });
-    };
-
-    if (categoryData) {
-      storeCategories(categoryData.categories);
+      categoryData.categories.forEach((category) => {
+        idbPromise('categories', 'put', category);
+      });
     } else if (!loading) {
       idbPromise('categories', 'get').then((categories) => {
         dispatch({
           type: UPDATE_CATEGORIES,
-          categories: categories || [],
+          categories: categories,
         });
       });
     }
@@ -50,16 +44,14 @@ function CategoryMenu() {
   return (
     <div>
       <h2>Choose a Category:</h2>
-      {/* ❄️ MX: changed mapping parameters */}
-      {categories.map((category) => (
+      {categories.map((item) => (
         <button
-          key={category._id}
+          key={item._id}
           onClick={() => {
-            handleClick(category._id);
+            handleClick(item._id);
           }}
-          className={`btn ${currentCategory === category._id && 'active'}`}
         >
-          {category.name}
+          {item.name}
         </button>
       ))}
     </div>
@@ -67,3 +59,4 @@ function CategoryMenu() {
 }
 
 export default CategoryMenu;
+
