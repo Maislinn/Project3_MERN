@@ -5,10 +5,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
 
 function OwnerProfile() {
-    const { ownerUserData } = useQuery(QUERY_USER);
+    const { data } = useQuery(QUERY_USER);
     let user;
-
-    user = ownerUserData ?? dummyUser;
+    user = data.user ?? dummyUser;
 
     const dummyUser = {
         _id: "1",
