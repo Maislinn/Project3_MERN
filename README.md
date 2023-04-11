@@ -60,7 +60,7 @@ Reed Keyes | Github @rbkeyes
 
 ## Contributing
 
-As UC Berkeley students and tech professionals, we want to continue our learning and create effective code. Please reach out to any of the contributors directly for your feedback. To work on your own variations, please fork our ouriginal repository and create a pull request to submit your ideas for review. 
+As UC Berkeley students and tech professionals, we want to continue our learning and create effective code. Please reach out to any of the contributors directly for your feedback. To work on your own variations, please fork our our original repository and create a pull request to submit your ideas for review. 
 
 ## Deployment Link
 
