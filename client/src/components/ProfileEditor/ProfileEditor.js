@@ -4,15 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
-import { UPDATE_PROFILE } from '../../utils/mutations';
+import { EDIT_USER } from '../../utils/mutations';
 
 const EditUserProfile = ({ userId }) => {
     const { loading, error, data } = useQuery(QUERY_USER, {
         variables: { userId },
     });
 
-    const [updateUserProfile, { loading: updateLoading, error: updateError }] = useMutation(
-        UPDATE_PROFILE
+    const [editUser, { loading: updateLoading, error: updateError }] = useMutation(
+        EDIT_USER
     );
     const [showModal, setShowModal] = useState(false);
     const [oldPassword, setOldPassword] = useState('');
@@ -35,8 +35,9 @@ const EditUserProfile = ({ userId }) => {
     }, [data]);
 
     const handleConfirmUpdate = async () => {
+        wq
         try {
-            await updateUserProfile({
+            await editUser({
                 variables: {
                     userId,
                     profile: {
@@ -56,11 +57,11 @@ const EditUserProfile = ({ userId }) => {
             console.error(error);
         }
     };
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setShowModal(true);
-      };
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error fetching user data</p>;
@@ -92,9 +93,17 @@ const EditUserProfile = ({ userId }) => {
                 />
                 <input
                     type="password"
+                    name="oldPassword"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    placeholder="Input your old password to confirm changes"
+                    required
+                />
+                <input
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
+                    placeholder="New Password"
                     minLength="5"
                     required
                 />
@@ -110,8 +119,24 @@ const EditUserProfile = ({ userId }) => {
                     onChange={(e) => setAvatar(e.target.value)}
                     placeholder="Avatar URL"
                 />
-                <button type="submit">Update Profile</button>
+                <button type="submit" disabled={updateLoading}>
+                    Save Changes
+                </button>
             </form>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Update</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to update your profile?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary" onClick={handleConfirmUpdate}>
+                        Update
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };
