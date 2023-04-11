@@ -49,6 +49,7 @@ function ProductItem(item) {
   return (
     <div className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
+        {/* 🦄 rbk: add img info to const above as well as product list to render */}
         {/* <img
           alt={name}
           src={`/images/${image}`}
@@ -57,21 +58,20 @@ function ProductItem(item) {
       </Link>
       <div>
         <p>{description}</p>
+        {/* 🦄 rbk: moved list of services to detail page */}
         {/* <ul>Services provided:
         {listServices}
         </ul> */}
         {/* <div>{quantity} {pluralize("item", quantity)} in stock</div> */}
         <p>${price}</p>
       </div>
-      {/* <Booking /> */}
+      {/* 🦄 rbk: removed add to cart. will have datepicker and add to cart on detail page */}
       {/* <button onClick={addToCart}>Add to cart</button> */}
-      <Link to={`/products/${_id}`}><button>
-        {/* <img
-          alt={name}
-          src={`/images/${image}`}
-        /> */}
-        <p>Click here for more information or to schedule {name}</p>
-        </button></Link>
+      <Link to={`/products/${_id}`}>
+        <button>
+          <p>Click here for more information or to schedule {name}</p>
+        </button>
+      </Link>
     </div>
   );
 }
