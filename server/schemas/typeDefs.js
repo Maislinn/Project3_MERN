@@ -14,21 +14,25 @@ const typeDefs = gql`
     services: [String]
   }
 
-  # ❄️ MX-TODO ⏰: check order&user type ⤵️
+  # ❄️ MX-TODO ⏰: check order type ⤵️
   type Order {
     _id: ID
     purchaseDate: String
     products: [Product]
   }
+  # ❄️ MX-TODO ⏰: check order type ⤴️
 
+  # ❄️ MX: updated user type based on user model ⤵️
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
     orders: [Order]
+    location: String
+    avatar: String
+    pets: [Pet]
   }
-  # ❄️ MX-TODO ⏰: check order&user type ⤴️
 
   type Checkout {
     session: ID
