@@ -21,12 +21,14 @@ function OwnerProfile() {
             type: "Dog",
             breed: "Labrador",
             age: 3,
+            image: "Labrador.jpg",
         },
         {
             name: "Sunny",
             type: "Dog",
             breed: "Golden Retriever",
             age: 5,
+            image: "Golden-Retriever.jpg",
         }],
         orders: [{
             purchaseDate: "2021-01-01",
