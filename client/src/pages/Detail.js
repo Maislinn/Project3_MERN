@@ -90,6 +90,7 @@ function Detail() {
           <h2>{currentProduct.name}</h2>
 
           <p>{currentProduct.description}</p>
+          <p>{currentProduct.services}</p>
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}

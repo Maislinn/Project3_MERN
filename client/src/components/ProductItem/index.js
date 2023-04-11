@@ -17,11 +17,11 @@ function ProductItem(item) {
     services
   } = item;
 
-  // map services to render each as a <li>
-  // 🔮 will need unique key added to <li> as key={_id}
-  const listServices =
-    services.map((service) =>
-      <li>{service}</li>);
+  // // map services to render each as a <li>
+  // // 🔮 will need unique key added to <li> as key={_id}
+  // const listServices =
+  //   services.map((service) =>
+  //     <li>{service}</li>);
 
   const { cart } = state
 
@@ -56,15 +56,15 @@ function ProductItem(item) {
         <p>{name}</p>
       </Link>
       <div>
-        <span>{description}</span>
-        <ul>Services provided:
+        <p>{description}</p>
+        {/* <ul>Services provided:
         {listServices}
-        </ul>
+        </ul> */}
         {/* <div>{quantity} {pluralize("item", quantity)} in stock</div> */}
-        <span>${price}</span>
+        <p>${price}</p>
       </div>
-      <Booking />
-      <button onClick={addToCart}>Add to cart</button>
+      {/* <Booking /> */}
+      {/* <button onClick={addToCart}>Add to cart</button> */}
     </div>
   );
 }
