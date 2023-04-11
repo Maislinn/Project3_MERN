@@ -1,3 +1,6 @@
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
@@ -46,9 +49,9 @@ const EditUserProfile = ({ userId }) => {
             },
           },
         });
-        // Show success message or update UI
+        console.log('Profile updated!');
       } catch (error) {
-        // Handle error and show error message
+        console.error(error);
       }
     };
   
