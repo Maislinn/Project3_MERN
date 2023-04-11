@@ -31,7 +31,6 @@ const typeDefs = gql`
     orders: [Order]
     location: String
     avatar: String
-    pets: [Pet]
   }
 
   type Checkout {
