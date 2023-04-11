@@ -12,7 +12,12 @@ const EditUserProfile = ({ userId }) => {
       UPDATE_PROFILE
     );
   
-    // State variables and other code remain the same
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [location, setLocation] = useState('');
+    const [avatar, setAvatar] = useState('');
   
     useEffect(() => {
       if (data && data.user) {
