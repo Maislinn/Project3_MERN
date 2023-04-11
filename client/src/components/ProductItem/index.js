@@ -14,37 +14,38 @@ function ProductItem(item) {
     name,
     description,
     price,
-    services
+    // services
   } = item;
 
+  // 🦄 rbk: commented out for now - can remove once booking system is completed
   // // map services to render each as a <li>
   // // 🔮 will need unique key added to <li> as key={_id}
   // const listServices =
   //   services.map((service) =>
   //     <li>{service}</li>);
 
-  const { cart } = state
+  // const { cart } = state
 
-  const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-    if (itemInCart) {
-      dispatch({
-        type: UPDATE_CART_QUANTITY,
-        _id: _id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-      });
-      idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-      });
-    } else {
-      dispatch({
-        type: ADD_TO_CART,
-        product: { ...item, purchaseQuantity: 1 }
-      });
-      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
-    }
-  }
+  // const addToCart = () => {
+  //   const itemInCart = cart.find((cartItem) => cartItem._id === _id)
+  //   if (itemInCart) {
+  //     dispatch({
+  //       type: UPDATE_CART_QUANTITY,
+  //       _id: _id,
+  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+  //     });
+  //     idbPromise('cart', 'put', {
+  //       ...itemInCart,
+  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+  //     });
+  //   } else {
+  //     dispatch({
+  //       type: ADD_TO_CART,
+  //       product: { ...item, purchaseQuantity: 1 }
+  //     });
+  //     idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+  //   }
+  // }
 
   return (
     <div className="card px-1 py-1">

@@ -4,10 +4,12 @@ export const QUERY_PRODUCTS = gql`
 {
   products {
     _id
+    # 🦄 add image here if needed
     name
     description
     price
     services
+    # 🦄 add category here if needed
   }
 }
 `;

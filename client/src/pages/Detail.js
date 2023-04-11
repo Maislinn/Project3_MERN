@@ -90,7 +90,11 @@ function Detail() {
           <h2>{currentProduct.name}</h2>
 
           <p>{currentProduct.description}</p>
-          <p>{currentProduct.services}</p>
+          <h3>Services Provided</h3>
+          <ul>
+            {(currentProduct.services).map((service)=> 
+            <li>{service}</li>)}
+          </ul>
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
