@@ -116,7 +116,7 @@ const resolvers = {
     },
     // ❄️ MX-TODO ⏰: update order&user mutations ⤴️
 
-     // ❄️ MX: add products mutation: add, update, delete ⤵️
+     // ❄️ MX: add products: add, update, delete ⤵️
       addProduct: async (parent, args) => {
         const product = await Product.create(args);
         await product.save();
@@ -130,9 +130,9 @@ const resolvers = {
       deleteProduct: async (parent, { _id }) => {
         return await Product.findByIdAndRemove(id);
       },
-      // ❄️ MX: add products mutation: add, update, delete ⤴️
+      // ❄️ MX: add products: add, update, delete ⤴️
 
-    // ❄️ MX-TODO ⏰: test login mutation ⤵️
+    // ❄️ MX: login 🧪✅
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

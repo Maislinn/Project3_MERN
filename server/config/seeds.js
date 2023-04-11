@@ -77,9 +77,16 @@ db.once("open", async () => {
     location: "New York, NY",
     orders: [
       {
-        // ❄️MX-TODO: check the code ⤵️ 
-        products: [products[0]._id, products[1]._id, products[2]._id],
+        products: [products[0]._id],
       },
+      {
+        products: [products[1]._id],
+      },
+      {
+        products:[products[2]._id],
+      }
+      // ❄️ MX: commented out for seeding
+      // products: [products[0]._id, products[1]._id, products[2]._id],
     ],
   });
 
