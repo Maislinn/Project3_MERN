@@ -4,18 +4,18 @@ const { User, Product, Category } = require("../models");
 db.once("open", async () => {
   await Category.deleteMany();
 
-  // ❄️ MX: add categories seed data ⤵️
+  // ❄️ MX: added categories seed data ⤵️
   const categories = await Category.insertMany([
     { name: "Essential Care" },
     { name: "Premium Care" },
   ]);
-  // ❄️ MX: add categories seed data ⤴️
+  // ❄️ MX: added categories seed data ⤴️
 
   console.log("categories seeded 🌱");
 
   await Product.deleteMany();
 
-  // ❄️ MX: add products seed data ⤵️
+  // ❄️ MX: added products seed data ⤵️
   const products = await Product.insertMany([
     {
       name: "Drop-In Visit 30 MIN",
@@ -63,7 +63,7 @@ db.once("open", async () => {
       categories: [categories[0]._id],
     },
   ]);
-  // ❄️ MX: add products seed data ⤴️
+  // ❄️ MX: added products seed data ⤴️
 
   console.log("products seeded 🌱");
 
