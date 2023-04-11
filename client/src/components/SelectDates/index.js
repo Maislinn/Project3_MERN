@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 
 function SelectDates() {
+  // useState variables for modal
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-    return (
-      <>
+  // useState variable for DatePicker
+  const [startDate, setStartDate] = useState(new Date());
+
+  return (
+    <>
       <Button variant="primary" onClick={handleShow}>
         Select Dates
       </Button>
@@ -19,7 +25,8 @@ function SelectDates() {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -30,7 +37,7 @@ function SelectDates() {
         </Modal.Footer>
       </Modal>
     </>
-    );
-}
+  );
+};
 
 export default SelectDates;

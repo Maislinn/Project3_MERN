@@ -59,7 +59,6 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path="/serviceHistory"  element={<ServiceHistory />} />
               <Route path="/products/:id" element={<Detail />}  />
-              {/* Added the path below to test the page */}
               <Route path="/ownerprofile" element={<OwnerProfile />}  />
               <Route path="*" 
                 element={<NoMatch />} 
