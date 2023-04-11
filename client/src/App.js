@@ -63,7 +63,7 @@ function App() {
               <Route path="/serviceHistory"  element={<ServiceHistory />} />
               <Route path="/products/:id" element={<Detail />}  />
               {/* Added the path below to test the page */}
-              <Route path="/owners/:id" element={<OwnerProfile />}  />
+              <Route path="/ownerprofile" element={<OwnerProfile />}  />
               <Route path="/booking" element={<Booking />} />
               <Route path="*" 
                 element={<NoMatch />} 
