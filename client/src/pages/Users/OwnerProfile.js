@@ -8,9 +8,7 @@ function OwnerProfile() {
     const { ownerUserData } = useQuery(QUERY_USER);
     let user;
 
-    if (ownerUserData) {
-        user = ownerUserData.user;
-    } else { user = dummyUser; }
+    user = ownerUserData ?? dummyUser;
 
     const dummyUser = {
         _id: "1",
@@ -54,20 +52,29 @@ function OwnerProfile() {
                     <>
                         <h1>{user.name}'s Profile</h1>
                         <img alt={user.name} src={`/images/${user.avatar}`} />
-                        <p>Email: {user.email}</p>
-                        <p>Location: {user.location}</p>
-                        <h3>Pet Information</h3>
-                        <div className="flex-row">
-                            {user.pets.map((pet) => (
-                                <div key={pet.name}>
-                                    <img alt={pet.name} src={`/images/${pet.image}`} />
-                                    <p>Name: {pet.name}</p>
-                                    <p>Type: {pet.type}</p>
-                                    <p>Breed: {pet.breed}</p>
-                                    <p>Age: {pet.age}</p>
+                        <ul className="flex-row">
+                            <li className="mx-1">Email: {user.email}</li>
+                            <li className="mx-1">Location: {user.location}</li>
+                            <li className="mx-1"><h3>Pet Information</h3></li>
+                            <li className="mx-1">
+                                <div className="flex-row">
+                                    {user.pets.map((pet) => (
+                                        <div key={pet.name}>
+                                            <img alt={pet.name} src={`/images/${pet.image}`} />
+                                            <p>Name: {pet.name}</p>
+                                            <p>Type: {pet.type}</p>
+                                            <p>Breed: {pet.breed}</p>
+                                            <p>Age: {pet.age}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
+                            </li>
+                            <li className="mx-1">
+                                <Link to="/serviceHistory">
+                                    Services History
+                                </Link>
+                            </li>
+                        </ul>
                     </>) : (
                     <h3>You need to be logged in to see this. Use the navigation links above to sign up or <Link to={`/login`}>log in</Link>!
                     </h3>
