@@ -13,7 +13,7 @@ import 'react-nice-dates/build/style.css'
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function SelectDates({ visit }) {
+function ScheduleVisit({ visit }) {
   // console.log(visit);
   // // useState for datepicker
   // const [startDate, setStartDate] = useState(null);
@@ -156,4 +156,4 @@ function SelectDates({ visit }) {
   );
 }
 
-export default SelectDates;
+export default ScheduleVisit;

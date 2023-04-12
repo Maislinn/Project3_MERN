@@ -101,12 +101,12 @@ function Detail() {
           <div>
             <strong>Price:</strong>${currentProduct.price}{' '}
             <SelectDates visit={currentProduct.name} />
-            <button onClick={addToCart}>Add to Cart</button>
+            <button onClick={addToCart}>Schedule This Visit</button>
             <button
               disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
-              Remove from Cart
+              Cancel This Visit
             </button>
           </div>
 
