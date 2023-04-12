@@ -98,7 +98,7 @@ function SelectDates({ visit }) {
           )}
         </DateRangePicker>
       }
-      {/* 🦄 I feel like there should be a way to dynamically set the min & max length but for now I'm just going to leave it like this so I don't waste too much time on it*/}
+      {/* 🦄 I feel like there should be a way to dynamically set the min & max length based on selected product but for now I'm just going to leave it like this so I don't spend too much time on it*/}
       {visit === "Long-Term Care"
         &&
         <DateRangePicker
