@@ -87,4 +87,4 @@ query getUserById($userId: ID!) {
       }
     }
   }
-};`
+}`
