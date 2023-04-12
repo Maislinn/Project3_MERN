@@ -4,7 +4,7 @@
 
 // import "react-datepicker/dist/react-datepicker.css";
 // import { addDays } from 'date-fns';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // 🔮 for future reference: https://reactnicedates.hernansartorio.com/#api-reference
 import { enUS } from 'date-fns/locale'
 import { DatePicker, DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates'
@@ -38,9 +38,11 @@ function SelectDates({ visit }) {
   // drop-in visits = select single date
   // recurring visits = select date range (max 10 days)
   // long-term = select date range (max 30 days)
-  const [date, setDate] = useState()
-  const [startDate, setStartDate] = useState()
-  const [endDate, setEndDate] = useState()
+  const [date, setDate] = useState();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+
   return (
     <>
       {(visit === "Drop-In Visit 30 MIN" || visit === "Drop-In Visit 60 MIN")
@@ -95,6 +97,7 @@ function SelectDates({ visit }) {
           )}
         </DateRangePicker>
       }
+      {/* 🦄 I feel like there should be a way to dynamically set the min & max length but for now I'm just going to leave it like this so I don't waste too much time on it*/}
       {visit === "Long-Term Care"
         &&
         <DateRangePicker
@@ -103,9 +106,9 @@ function SelectDates({ visit }) {
           onStartDateChange={setStartDate}
           onEndDateChange={setEndDate}
           minimumDate={new Date()}
-          minimumLength={3}
-          maximumLength={10}
-          format='dd MMM yyyy'
+          minimumLength={11}
+          maximumLength={30}
+          format='MMM dd yyyy'
           locale={enUS}
         >
           {({ startDateInputProps, endDateInputProps, focus }) => (
