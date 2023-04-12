@@ -15,11 +15,20 @@ const typeDefs = gql`
     services: [String]
   }
 
+  # 🦄 rbk: added orderItemSchema
+  type orderItemSchema {
+    _id: ID
+    product: ID
+    startDate: String
+    endDate: String 
+  }
+
   # ❄️ MX-TODO ⏰: check order type ⤵️
+  # 🦄 rbk: modified Order type to reflect change made (orderItems instead of products)
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    orderItems: [orderItemSchema]
   }
   # ❄️ MX-TODO ⏰: check order type ⤴️
 
@@ -49,10 +58,13 @@ const typeDefs = gql`
     products: [Product]
     product(productId: ID!): Product
 
-    # 🦄 rbk: added just to check users in apollo sandbox
+    # 🦄 rbk: added users just to check users in apollo sandbox
     users: [User]!
 
     user: User
+
+    # 🦄 rbk: adding query all orders
+    orders: [Order]
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }
@@ -62,7 +74,10 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
 
     # ❄️ MX: addOrder - ⏰: 🧪
-    addOrder(products: [ID]!): Order
+    #addOrder(products: [ID]!): Order
+    # 🦄 rbk: commented out original addOrder mutation, adding new mutation based on recent changes
+    addOrder(product: [ID!], startDate: [String!], endDate: [String]): Order 
+
 
     # ❄️ MX: updateUser - ⏰: 🧪
     updateUser(firstName: String, lastName: String, email: String, password: String): User

@@ -18,8 +18,8 @@ const resolvers = {
     },
     // ❄️ MX: add products query ⤴️
 
-// 🦄 rbk: added just to check users in apollo sandbox
-    users: async() => await User.find(),
+    // 🦄 rbk: added just to check users in apollo sandbox
+    users: async () => await User.find(),
 
     user: async (parent, args, context) => {
       if (context.user) {
@@ -35,16 +35,27 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    order: async (parent, { _id }, context) => {
+
+    // 🦄 rbk: adding query for all orders
+    orders: async () => await Order.find(),
+    // order: async (parent, { _id }, context) => {
+    //   if (context.user) {
+    //     const user = await User.findById(context.user._id).populate({
+    //       path: 'orders.products',
+    //       populate: 'category'
+    //     });
+
+    //     return user.orders.id(_id);
+    //   }
+
+    //   throw new AuthenticationError('Not logged in');
+    // },
+    // 🦄 rbk: commented out above order mutation to test new model/schema for order/orderItems
+    order: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-
-        return user.orders.id(_id);
+        const user = await User.findById(context.user._id).populate(Order.orderItems);
+        return user.orders;
       }
-
       throw new AuthenticationError('Not logged in');
     },
 
@@ -95,10 +106,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
+    addOrder: async (parent, { ...orderItems }, context) => {
+      console.log(orderItems);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ orderItems });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
@@ -115,18 +126,18 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-     // ❄️ MX: products - add, update, delete ⤵️
-      addProduct: async (parent, args) => {
-        const product = await Product.create(args);
-        await product.save();
-        return product;
-      },
-      updateProduct: async (parent, { _id, ...args }) => {
-        return await Product.findByIdAndUpdate(id, update, { new: true });
-      },
-      deleteProduct: async (parent, { _id }) => {
-        return await Product.findByIdAndRemove(id);
-      },
+    // ❄️ MX: products - add, update, delete ⤵️
+    addProduct: async (parent, args) => {
+      const product = await Product.create(args);
+      await product.save();
+      return product;
+    },
+    updateProduct: async (parent, { _id, ...args }) => {
+      return await Product.findByIdAndUpdate(id, update, { new: true });
+    },
+    deleteProduct: async (parent, { _id }) => {
+      return await Product.findByIdAndRemove(id);
+    },
 
     // ❄️ MX: login 🧪✅
     login: async (parent, { email, password }) => {

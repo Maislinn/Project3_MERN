@@ -17,6 +17,5 @@ const orderItemSchema = new Schema({
     }
 });
 
-// const Category = mongoose.model('Category', categorySchema);
 
 module.exports = orderItemSchema;

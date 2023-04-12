@@ -10,7 +10,6 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-
   orderItems: [
     orderItemSchema 
   ]
