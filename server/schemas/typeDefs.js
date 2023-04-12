@@ -64,8 +64,8 @@ const typeDefs = gql`
     user: User
 
     # 🦄 rbk: adding query all orders
-    orders: [Order]
-    order(_id: ID!): Order
+    orders: [Order]!
+    order: Order
     checkout(products: [ID]!): Checkout
   }
 
