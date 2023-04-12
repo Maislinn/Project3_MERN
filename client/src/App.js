@@ -59,7 +59,12 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path="/serviceHistory"  element={<ServiceHistory />} />
               <Route path="/products/:id" element={<Detail />}  />
+<<<<<<< HEAD
               <Route path="/ownerprofile" element={<OwnerProfile />}  />
+=======
+              {/* Added the path below to test the page */}
+              <Route path="/owners/:id" element={<OwnerProfile />}  />
+>>>>>>> renderImages
               <Route path="*" 
                 element={<NoMatch />} 
               />

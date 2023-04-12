@@ -98,9 +98,9 @@ function Detail() {
             <li key={service}>{service}</li>)}
           </ul>
 
-          <p>
+          <div>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <SelectDates />
+            <SelectDates visit={currentProduct.name} />
             <button onClick={addToCart}>Add to Cart</button>
             <button
               disabled={!cart.find((p) => p._id === currentProduct._id)}
@@ -108,7 +108,7 @@ function Detail() {
             >
               Remove from Cart
             </button>
-          </p>
+          </div>
 
           <img
             src={`/images/${currentProduct.image}`}
