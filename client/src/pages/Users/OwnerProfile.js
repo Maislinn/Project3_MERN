@@ -6,18 +6,21 @@ import AuthService from '../../utils/auth';
 
 const dummyUser = {
     _id: "1",
-    name: "John Doe",
+    firstName: "John",
+    lastName: "Doe",
     email: "john.doe@example.com",
     location: "New York, NY",
     avatar: "Man-with-Cat-2.jpg",
     pets: [{
+        _id: 1,
         name: "Buddy",
         type: "Dog",
         breed: "Labrador",
         age: 3,
         image: "Labrador.jpg",
     },
-    {
+    {   
+        _id: 2,
         name: "Sunny",
         type: "Dog",
         breed: "Golden Retriever",
@@ -42,24 +45,25 @@ const dummyUser = {
 
 
 function OwnerProfile() {
-  let userId = null;
+//   let userId = null;
 
-  // Check if the user is logged in
-  if (AuthService.loggedIn()) {
-    // Get the user profile from the AuthService
-    const profile = AuthService.getProfile();
-    userId = profile.userId; // This depends on the structure of your token payload
-  }
+//   // Check if the user is logged in
+//   if (AuthService.loggedIn()) {
+//     // Get the user profile from the AuthService
+//     const {data} = AuthService.getProfile();
+//     console.log(data._id);
+//     userId = data._id;
+//   }
 
-  const { data, loading, error } = useQuery(GET_USER_BY_ID, {
-    variables: { userId: userId },
-    skip: !userId, // Skip the query if there is no userId
-  });
+//   const { data, loading, error } = useQuery(GET_USER_BY_ID, {
+//     variables: { userId: userId },
+//     skip: !userId, // Skip the query if there is no userId
+//   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+//   if (loading) return <p>Loading...</p>;
+//   if (error) return <p>Error: {error.message}</p>;
 
-  const user = data.user ? data.user : dummyUser;
+  const user = dummyUser;
 
   return (
     <>
