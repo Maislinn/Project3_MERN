@@ -23,7 +23,7 @@ import ServiceHistory from './pages/Users/ServiceHistory';
 import OwnerProfile from './pages/Users/OwnerProfile';
 
 // 🦄 rbk: import BookingForm
-import Booking from './pages/Booking';
+// import Booking from './pages/Booking';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
