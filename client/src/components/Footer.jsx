@@ -37,6 +37,7 @@ const Footer = () => {
         </ul>
 
         {/* footer socials */}
+        {/* ❄️ MX: updated data in assets & components for revising facebook & instagram link */}
         <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
           {/* Facebook */}
           <a
@@ -62,6 +63,7 @@ const Footer = () => {
 
       <div className="w-full mx-auto container pb-4 md:flex md:items-center md:justify-center">
         {/* footer copyright and credits  */}
+        {/* ❄️ MX: removed string before the copy icon */}
         <span className="text-sm sm:text-center">
           &copy; 2023 Pet Pal LLC. All Rights Reserved.
         </span>
