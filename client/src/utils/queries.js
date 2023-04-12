@@ -1,31 +1,91 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_PRODUCTS = gql`
-{
-  products {
-    _id
-    name
-    description
-    price
-    services
-  }
+query GetProducts {
+    getProducts {
+        _id
+        name
+        images {
+            original
+            thumbnail
+        }
+        description
+        notes
+        styles {
+            name
+            price
+            reducedPrice
+            weight {
+                value
+                unit
+            }
+            height {
+                value
+                unit
+            }
+        }
+    }
 }
 `;
 
-// query getProducts($category: ID) {
-//   products(category: $category) {
-//     _id
-//     name
-//     description
-//     price
-//     quantity
-//     image
-//     category {
-//       _id
-//     }
-//   }
-// }
+export const QUERY_SINGLE_PRODUCT = gql`
+query GetProduct($id: ID!) {
+    getProduct(_id: $id) {
+        _id
+        name
+        images {
+            original
+            thumbnail
+        }
+        description
+        notes
+        styles {
+            name
+            price
+            reducedPrice
+            weight {
+                value
+                unit
+            }
+            height {
+                value
+                unit
+            }
+        }
+    }
+}
+`;
 
+export const QUERY_USERS = gql`
+    query GetUsers {
+        getUsers {
+            _id
+            username
+            email
+        }
+    }
+`;
+
+export const QUERY_ORDERS = gql`
+    query GetOrders {
+        getOrders {
+            _id
+            user
+            date
+            price
+        }
+    }
+`;
+
+export const QUERY_ME = gql`
+    query me {
+        me {
+            _id
+            username
+            email
+        }
+    }
+`;
 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
@@ -35,64 +95,3 @@ export const QUERY_CHECKOUT = gql`
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
-  {
-    products {
-      _id
-      name
-      description
-      price
-      quantity
-      category {
-        name
-      }
-    }
-  }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
-    }
-  }
-`;
-
-export const QUERY_USER = gql`
-  {
-    user {
-      firstName
-      lastName
-      avatar
-      email
-      location
-      pets {
-        _id
-        name
-        type
-        breed
-        age
-        image
-      }
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          services {
-            _id
-            name
-          }
-          categories {
-            _id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
