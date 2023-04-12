@@ -9,6 +9,7 @@ const typeDefs = gql`
   type Product {
     _id: ID
     name: String
+    image: String
     description: String
     price: Float
     services: [String]
@@ -47,6 +48,9 @@ const typeDefs = gql`
 
     products: [Product]
     product(productId: ID!): Product
+
+    # 🦄 rbk: added just to check users in apollo sandbox
+    users: [User]!
 
     user: User
     order(_id: ID!): Order

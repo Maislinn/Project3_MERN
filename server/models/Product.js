@@ -8,6 +8,10 @@ const productSchema = new Schema({
     required: true,
     trim: true
   },
+  //🦄 rbk: added image type to product
+  image: {
+    type: String,
+  },
   description: {
     type: String
   },
