@@ -8,8 +8,7 @@ import {
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
-  TOGGLE_CART,
-  UPDATE_PROFILE
+  TOGGLE_CART
 } from "./actions";
 
 export const reducer = (state, action) => {
@@ -79,16 +78,8 @@ export const reducer = (state, action) => {
       return {
         ...state,
         currentCategory: action.currentCategory
-      };
+      }
 
-    case UPDATE_PROFILE:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          ...action.payload,
-        },
-      };
     default:
       return state;
   }
