@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react'
 // 🔮 for future reference: https://reactnicedates.hernansartorio.com/#api-reference
 import { enUS } from 'date-fns/locale'
+import { format } from 'date-fns'
 import { DatePicker, DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates'
 import 'react-nice-dates/build/style.css'
 
@@ -54,82 +55,103 @@ function SelectDates({ visit }) {
         //   minDate={(new Date())}
         //   placeholderText='select a date'
         //   withPortal />
-        <DatePicker
-          date={date}
-          onDateChange={setDate}
-          format='MMM dd yyyy'
-          locale={enUS}
-        >
-          {({ inputProps, focused }) => (
-            <input
-              className={'input' + (focused ? ' -focused' : '')}
-              {...inputProps}
-            />
-          )}
-        </DatePicker>
-      }
-      {(visit === "Recurring Visits 30 MIN" || visit === "Recurring Visits 60 MIN")
-        &&
-        <DateRangePicker
-          startDate={startDate}
-          endDate={endDate}
-          onStartDateChange={setStartDate}
-          onEndDateChange={setEndDate}
-          minimumDate={new Date()}
-          minimumLength={3}
-          maximumLength={10}
-          format='MMM dd yyyy'
-          locale={enUS}
-        >
-          {({ startDateInputProps, endDateInputProps, focus }) => (
-            <div className='date-range'>
-              <input
-                className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                {...startDateInputProps}
-                placeholder='Start date'
-              />
-              <span className='date-range_arrow' />
-              <input
-                className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                {...endDateInputProps}
-                placeholder='End date'
-              />
-            </div>
-          )}
-        </DateRangePicker>
-      }
-      {/* 🦄 I feel like there should be a way to dynamically set the min & max length based on selected product but for now I'm just going to leave it like this so I don't spend too much time on it*/}
-      {visit === "Long-Term Care"
-        &&
-        <DateRangePicker
-          startDate={startDate}
-          endDate={endDate}
-          onStartDateChange={setStartDate}
-          onEndDateChange={setEndDate}
-          minimumDate={new Date()}
-          minimumLength={11}
-          maximumLength={30}
-          format='MMM dd yyyy'
-          locale={enUS}
-        >
-          {({ startDateInputProps, endDateInputProps, focus }) => (
-            <div className='date-range'>
-              <input
-                className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                {...startDateInputProps}
-                placeholder='Start date'
-              />
-              <span className='date-range_arrow' />
-              <input
-                className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                {...endDateInputProps}
-                placeholder='End date'
-              />
-            </div>
-          )}
-        </DateRangePicker>
+        <div>
 
+          <DatePicker
+            date={date}
+            onDateChange={setDate}
+            format='MMM dd yyyy'
+            locale={enUS}
+          >
+            {({ inputProps, focused }) => (
+              <input
+                className={'input' + (focused ? ' -focused' : '')}
+                {...inputProps}
+              />
+            )}
+          </DatePicker>
+
+          {date ? <p style={{ 'font-weight': 'bold' }}>Selected date: {format(date, 'dd MMM yyyy', { locale: enUS })} </p> : <p style={{ 'color': 'red' }}>Select date of visit above.</p>}
+
+        </div>
       }
+
+      <div>
+        {(visit === "Recurring Visits 30 MIN" || visit === "Recurring Visits 60 MIN")
+          &&
+          <DateRangePicker
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={setStartDate}
+            onEndDateChange={setEndDate}
+            minimumDate={new Date()}
+            minimumLength={3}
+            maximumLength={10}
+            format='MMM dd yyyy'
+            locale={enUS}
+          >
+            {({ startDateInputProps, endDateInputProps, focus }) => (
+              <div className='date-range'>
+                <input
+                  className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                  {...startDateInputProps}
+                  placeholder='Start date'
+                />
+                <span className='date-range_arrow' />
+                <input
+                  className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                  {...endDateInputProps}
+                  placeholder='End date'
+                />
+              </div>
+            )}
+          </DateRangePicker>
+
+        }
+        {/* 🦄 I feel like there should be a way to dynamically set the min & max length based on selected product but for now I'm just going to leave it like this so I don't spend too much time on it*/}
+        {visit === "Long-Term Care"
+          &&
+          <DateRangePicker
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={setStartDate}
+            onEndDateChange={setEndDate}
+            minimumDate={new Date()}
+            minimumLength={11}
+            maximumLength={30}
+            format='MMM dd yyyy'
+            locale={enUS}
+          >
+            {({ startDateInputProps, endDateInputProps, focus }) => (
+              <div className='date-range'>
+                <input
+                  className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                  {...startDateInputProps}
+                  placeholder='Start date'
+                />
+                <span className='date-range_arrow' />
+                <input
+                  className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                  {...endDateInputProps}
+                  placeholder='End date'
+                />
+              </div>
+            )}
+          </DateRangePicker>
+
+        }
+        
+        {startDate ? 
+          <p style={{ 'font-weight': 'bold' }}>
+            Selected start date: {format(startDate, 'dd MMM yyyy', { locale: enUS })} 
+          </p> 
+          : <p style={{ 'color': 'red' }}>Select dates above.</p>
+        }
+        {endDate ? 
+          <p style={{ 'font-weight': 'bold' }}>
+            Selected end date: {format(endDate, 'dd MMM yyyy', { locale: enUS })} 
+          </p> : <p></p>} 
+      </div>
     </>
   );
 }
