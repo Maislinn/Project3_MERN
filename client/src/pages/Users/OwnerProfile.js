@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-// import Auth from "../../utils/auth";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
+import { GET_USER_BY_ID } from '../../utils/queries';
 
 function OwnerProfile() {
-    const { data } = useQuery(QUERY_USER);
-    console.log(data);
+    const { data, loading, error } = useQuery(GET_USER_BY_ID, {
+        variables: { userId: "some-user-id" },
+      });    
+      console.log(data);
     const dummyUser = {
         _id: "1",
         name: "John Doe",
