@@ -16,7 +16,7 @@ const Footer = () => {
           </li>
           <li className="mr-4 hover:text-lime-500 duration-200 md:mr-6">
             <Link to="/products">
-              <h3>Products</h3>
+              <h3>Sitters</h3>
             </Link>
           </li>
           <li className="mr-4 hover:text-lime-500 duration-200 md:mr-6">
@@ -41,26 +41,29 @@ const Footer = () => {
           {/* Facebook */}
           <a
           className="hover:text-lime-500 duration-200"
-            href="https://www.facebook.com/georgiaevergreens/"
+            href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer"
           >
             <FaFacebookF />
           </a>
           {/* Instagram */}
-          <a className="hover:text-lime-500 duration-200" href="https://www.instagram.com/americanevergreens" target="_blank" rel="noreferrer">
+          <a className="hover:text-lime-500 duration-200" 
+          href="https://www.instagram.com/" 
+          target="_blank" 
+          rel="noreferrer">
             <ImInstagram />
           </a>
         </div>
       </div>
 
       {/* divider line */}
-      <hr className="my-6 m-4 w-10/12 [border-color:#79A637] border-gray-200 sm:mx-auto lg:my-8" />
+      <hr className="my-6 m-4 w-10/12 [border-color:#979293] border-gray-200 sm:mx-auto lg:my-8" />
 
       <div className="w-full mx-auto container pb-4 md:flex md:items-center md:justify-center">
         {/* footer copyright and credits  */}
-        <span className="text-sm sm:text-center">Site built by CLEMB. 
-          &copy; 2023 Georgia Evergreens LLC. All Rights Reserved.
+        <span className="text-sm sm:text-center">
+          &copy; 2023 Pet Pal LLC. All Rights Reserved.
         </span>
         
       </div>

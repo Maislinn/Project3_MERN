@@ -97,7 +97,7 @@ const SignUp = (props) => {
       <div className="m-5 grid place-items-center">
         <button
           onClick={() => props.onFormSwitch("login")}
-          className="[background-color:#79a637] [color:#f5bcb1] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          className="[background-color:#979293] [color:#f5bcb1] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         >
           Already have an account? Login here.
         </button>
