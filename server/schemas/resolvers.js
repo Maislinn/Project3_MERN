@@ -41,7 +41,6 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate("orders");
-        console.log(user);
 
         return user.orders.id(_id);
       }

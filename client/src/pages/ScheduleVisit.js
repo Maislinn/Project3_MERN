@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import SelectDates from '../components/SelectDates'
+import SelectDates from '../components/SelectDates/SelectDates'
 
 import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
@@ -101,7 +101,7 @@ function Detail() {
           <div>
             <strong>Price:</strong>${currentProduct.price}{' '}
             <SelectDates visit={currentProduct.name} />
-            <button onClick={addToCart}>Schedule This Visit</button>
+            <button onClick={addToCart}>Book Now!</button>
             <button
               disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}

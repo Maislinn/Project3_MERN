@@ -1,10 +1,4 @@
-// import React, { useState } from 'react';
-
-// import DatePicker from "react-datepicker";
-
-// import "react-datepicker/dist/react-datepicker.css";
-// import { addDays } from 'date-fns';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 // 🔮 for future reference: https://reactnicedates.hernansartorio.com/#api-reference
 import { enUS } from 'date-fns/locale'
 import { format } from 'date-fns'
@@ -14,27 +8,6 @@ import 'react-nice-dates/build/style.css'
 import "react-datepicker/dist/react-datepicker.css";
 
 function ScheduleVisit({ visit }) {
-  // console.log(visit);
-  // // useState for datepicker
-  // const [startDate, setStartDate] = useState(null);
-  // const [endDate, setEndDate] = useState(null);
-
-  // const [minDate, setMinDate] = useState(new Date());
-  // const [maxDate, setMaxDate] = useState(null);
-  // const [maxDateLT, setMaxDateLT] = useState(null);
-
-  // // const [minDateLT, setMinDateLT] = useState(new Date());
-  // // const [startDateLT, setStartDateLT] = useState(null);
-
-
-  // const onChange = (dates) => {
-  //   const [start, end] = dates;
-  //   setStartDate(start);
-  //   setEndDate(end);
-  //   setMinDate(start);
-  //   setMaxDate(addDays(start, 9))
-  //   setMaxDateLT(addDays(start, 29))
-  // }
 
   // added code to conditionally render datepicker dependent on selected product
   // drop-in visits = select single date
@@ -47,16 +20,10 @@ function ScheduleVisit({ visit }) {
 
   return (
     <>
+      {/* if 30 min or 60 min drop-in visit, render single day datepicker */}
       {(visit === "Drop-In Visit 30 MIN" || visit === "Drop-In Visit 60 MIN")
         &&
-        // <DatePicker
-        //   selected={startDate}
-        //   onChange={(date) => setStartDate(date)}
-        //   minDate={(new Date())}
-        //   placeholderText='select a date'
-        //   withPortal />
         <div>
-
           <DatePicker
             date={date}
             onDateChange={setDate}
@@ -70,15 +37,16 @@ function ScheduleVisit({ visit }) {
               />
             )}
           </DatePicker>
-
+          {/* render selected date on page */}
           {date ? <p style={{ 'font-weight': 'bold' }}>Selected date: {format(date, 'dd MMM yyyy', { locale: enUS })} </p> : <p style={{ 'color': 'red' }}>Select date of visit above.</p>}
-
         </div>
       }
 
-      <div>
-        {(visit === "Recurring Visits 30 MIN" || visit === "Recurring Visits 60 MIN")
-          &&
+      {/* if 30 or 60 min recurring visits, render datepicker to select range */}
+      {/* min 3 days, max 10 days */}
+      {(visit === "Recurring Visits 30 MIN" || visit === "Recurring Visits 60 MIN")
+        &&
+        <div>
           <DateRangePicker
             startDate={startDate}
             endDate={endDate}
@@ -106,11 +74,25 @@ function ScheduleVisit({ visit }) {
               </div>
             )}
           </DateRangePicker>
+          {/* render selected dates on page */}
+          {startDate ?
+            <p style={{ 'font-weight': 'bold' }}>
+              Selected start date: {format(startDate, 'dd MMM yyyy', { locale: enUS })}
+            </p>
+            : <p style={{ 'color': 'red' }}>Select dates above.</p>
+          }
+          {endDate ?
+            <p style={{ 'font-weight': 'bold' }}>
+              Selected end date: {format(endDate, 'dd MMM yyyy', { locale: enUS })}
+            </p> : <p></p>}
+        </div>
+      }
 
-        }
-        {/* 🦄 I feel like there should be a way to dynamically set the min & max length based on selected product but for now I'm just going to leave it like this so I don't spend too much time on it*/}
-        {visit === "Long-Term Care"
-          &&
+      {/* if long-term visit, render date range picker*/}
+      {/* min 11 days, max 30 days */}
+      {visit === "Long-Term Care"
+        &&
+        <div>
           <DateRangePicker
             startDate={startDate}
             endDate={endDate}
@@ -138,20 +120,19 @@ function ScheduleVisit({ visit }) {
               </div>
             )}
           </DateRangePicker>
-
-        }
-        
-        {startDate ? 
-          <p style={{ 'font-weight': 'bold' }}>
-            Selected start date: {format(startDate, 'dd MMM yyyy', { locale: enUS })} 
-          </p> 
-          : <p style={{ 'color': 'red' }}>Select dates above.</p>
-        }
-        {endDate ? 
-          <p style={{ 'font-weight': 'bold' }}>
-            Selected end date: {format(endDate, 'dd MMM yyyy', { locale: enUS })} 
-          </p> : <p></p>} 
-      </div>
+          {/* render selected dates on page */}
+          {startDate ?
+            <p style={{ 'font-weight': 'bold' }}>
+              Selected start date: {format(startDate, 'dd MMM yyyy', { locale: enUS })}
+            </p>
+            : <p style={{ 'color': 'red' }}>Select dates above.</p>
+          }
+          {endDate ?
+            <p style={{ 'font-weight': 'bold' }}>
+              Selected end date: {format(endDate, 'dd MMM yyyy', { locale: enUS })}
+            </p> : <p></p>}
+        </div>
+      }
     </>
   );
 }
