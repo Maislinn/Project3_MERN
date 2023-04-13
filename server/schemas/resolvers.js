@@ -37,26 +37,15 @@ const resolvers = {
     },
 
     // 🦄 rbk: adding query for all orders
-    orders: async () => 
-await Order.find(),
-    // order: async (parent, { _id }, context) => {
-    //   if (context.user) {
-    //     const user = await User.findById(context.user._id).populate({
-    //       path: 'orders.products',
-    //       populate: 'category'
-    //     });
-
-    //     return user.orders.id(_id);
-    //   }
-
-    //   throw new AuthenticationError('Not logged in');
-    // },
-    // 🦄 rbk: commented out above order mutation to test new model/schema for order/orderItems
-    order: async (parent, args, context) => {
+    // orders: async () => await Order.find(),
+    order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate(Order.orderItems);
-        return user.orders;
+        const user = await User.findById(context.user._id).populate("orders");
+        console.log(user);
+
+        return user.orders.id(_id);
       }
+
       throw new AuthenticationError('Not logged in');
     },
 
