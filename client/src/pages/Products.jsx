@@ -32,11 +32,11 @@ export default function Products() {
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
                         <CardBody className="[background-color:#f5bcb1] rounded-md">
                             <div className="mb-3">
-                                {/* <img
-                                    src={`/${product.images[0].original}`}
-                                    alt={`${product.images[0].original}`}
+                                <img
+                                    src={`/imgs/${product.image}`}
+                                    alt={product.name}
                                     className="rounded-t-xl"
-                                ></img> */}
+                                ></img>
                                 <div className="font-medium [color:#979291]">
                                     <h4 className="m-4">{product.name}</h4>
                                 </div>
