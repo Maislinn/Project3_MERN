@@ -20,14 +20,15 @@ export default function Products() {
         } else if (loading) {
             setStatus("loading...");
         } 
-        setStatus(error)
+        setStatus("something went")
       }, [data, loading, error]);
 
 
 
     return (
         <div className="container justify-center flex flex-wrap">
-            {products.map((product) => {
+            {!products && <p>{status}</p>}
+            {products && products.map((product) => {
                 return (
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
                         <CardBody className="[background-color:#f5bcb1] rounded-md">

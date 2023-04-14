@@ -47,7 +47,7 @@ const typeDefs = gql`
     categories: [Category]
 
     products: [Product]
-    product(productId: ID!): Product
+    product(_id: ID!): Product
 
     # 🦄 rbk: added just to check users in apollo sandbox
     users: [User]!

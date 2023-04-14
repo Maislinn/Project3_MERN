@@ -13,8 +13,8 @@ const resolvers = {
     products: async () => {
       return await Product.find();
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(id);
+    product: async (parent, { _id}) => {
+      return await Product.findById(_id);
     },
     // ❄️ MX: add products query ⤴️
 

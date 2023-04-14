@@ -19,7 +19,11 @@ import ContactForm from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import ProductDetails from "./pages/SingleProduct";
+import Product from "./pages/Product";
+// 🦄 rbk: created a new jsx file to work on product details
+// I'll delete whichever file I don't use once it's done
+// import ProductDetails from "./pages/ProductDetails";
+
 import OrderHistory from "./components/OrderHistory";
 import PaymentForm from "./components/PaymentForm";
 import Completion from "./components/Completion";
@@ -67,7 +71,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/productdetails/:id" element={<ProductDetails />} />
+              <Route path="/productdetails/:id" element={<Product />} />
+              {/* <Route path="/productdetails/:id" element={<ProductDetails />} /> */}
               <Route path="/orderhistory" element={<OrderHistory />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/profile" element={<Profile />} />

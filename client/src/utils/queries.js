@@ -15,7 +15,7 @@ export const QUERY_PRODUCTS = gql`
   `;
 
 export const QUERY_SINGLE_PRODUCT = gql`
-{
+query getProduct($_id: ID) {
     product(_id: $id) {
         _id
         name
@@ -23,8 +23,8 @@ export const QUERY_SINGLE_PRODUCT = gql`
         description
         price
         services
+        }
     }
-}
 `;
 
 export const QUERY_USERS = gql`
