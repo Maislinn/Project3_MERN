@@ -14,7 +14,7 @@ const resolvers = {
       return await Product.find();
     },
     product: async (parent, { _id}) => {
-      return await Product.findById(_id);
+      return await Product.findById({_id});
     },
     // ❄️ MX: add products query ⤴️
 

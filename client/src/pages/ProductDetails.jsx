@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useStoreContext } from "../utils/state";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
@@ -6,51 +6,42 @@ import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
 // Display images from the database
-// function Images({ images }) {
-//     if (images.length > 0) {
-//         return (
-//             <>
-//                 <img
-//                     alt="tree"
-//                     className="w-screen object-cover rounded-md shadow-lg"
-//                     src={`/${images[0].original}`}
-//                 />
-//             </>
-//         );
-//     } else {
-//         return (
-//             <>
-//                 <img src="" alt=""></img>
-//             </>
-//         );
-//     }
-// }
+function Images({ images }) {
+    if (images.length > 0) {
+        return (
+            <>
+                <img
+                    alt="tree"
+                    className="w-screen object-cover rounded-md shadow-lg"
+                    src={`/${images[0].original}`}
+                />
+            </>
+        );
+    } else {
+        return (
+            <>
+                <img src="" alt=""></img>
+            </>
+        );
+    }
+}
 
-function ProductDetails() {
-    const [currentProduct, setCurrentProduct] = useState({});
-    const [status, setStatus] = useState();
-    const { _id } = useParams();
+function SingleProduct() {
+    const { id } = useParams();
+    const [product, setProduct] = React.useState([]);
     const [selectedStyleName, setSelectedStyleName] = React.useState(0);
     const [quantity, setQuantity] = React.useState(1);
     const [state, dispatch] = useStoreContext();
     const { cart } = state;
-    const { loading, data, error } = useQuery(QUERY_SINGLE_PRODUCT, {
-        variables: { _id },
+    const { loading, error } = useQuery(QUERY_SINGLE_PRODUCT, {
+        variables: { id },
         onCompleted: (data) => {
-            if (data && data.product) {
-                setCurrentProduct(data.product);
+            if (data && data.getProduct) {
+                setProduct(data.getProduct);
+                setSelectedStyleName(data.getProduct.styles[0].name);
             }
         },
     });
-
-    // useEffect(() => {
-    //     if (data) {
-    //         setCurrentProduct(data.product);
-    //     } else if (loading) {
-    //         setStatus("loading...");
-    //     } 
-    //     setStatus("something went wrong")
-    //   }, [data, loading, error]);
 
     // Adding product to cart
     function addToCart(amount) {
@@ -146,7 +137,7 @@ function ProductDetails() {
         return <h2>Loading</h2>;
     }
     if (error) {
-        return <p>error</p>;
+        return <p>{error}</p>;
     }
     if (!product || !product._id) {
         return (
@@ -160,11 +151,9 @@ function ProductDetails() {
 
     return (
         <>
-        {!currentProduct && <p>{status}</p>}
-            {currentProduct &&
             <div className="pb-12 mb-40 mt-10 [background-color:#f5bcb1]">
                 <h2 className="text-3xl m-5 col-span-4 text-center [color:#979291]">
-                    {currentProduct.name}
+                    {product.name}
                 </h2>
                 <div className="flex flex-col md:flex-row justify-center items-center">
                     <div className=" rounded-md p-3 m-5">
@@ -173,21 +162,19 @@ function ProductDetails() {
                     <div className=" rounded-md p-3 m-5">
                         <Images images={product.images} />
                     </div>
-
-                {/* <div className="m-5">
-                    <div className="card">
-                        <div className="card-body">
-                            <div className=" [color:#979291]">
-                                {currentProduct.description}
-                            </div>
-                            <div className="m-5 [color:#979291]">
-                                {product.notes}
+                    <div className="m-5">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className=" [color:#979291]">
+                                    {product.description}
+                                </div>
+                                <div className="m-5 [color:#979291]">
+                                    {product.notes}
+                                </div>
                             </div>
                         </div>
-                    </div> */}
-
-                    {/* <div className="flex justify-center items-center flex-col [color:#979291]"> */}
-                    {/* <div className="m-5 text-left flex flex-wrap gap-4">
+                        <div className="flex justify-center items-center flex-col [color:#979291]">
+                            <div className="m-5 text-left flex flex-wrap gap-4">
                                 {[]
                                     .concat(product.styles)
                                     .sort(
@@ -218,8 +205,8 @@ function ProductDetails() {
                                             </div>
                                         );
                                     })}
-                            </div> */}
-                    {/* {StyleFeats({
+                            </div>
+                            {StyleFeats({
                                 style: product.styles.find(
                                     (s) => s.name === selectedStyleName
                                 ),
@@ -243,15 +230,14 @@ function ProductDetails() {
                                 return total + current.quantity;
                             }, 0)}
                         </div>
-                        </div>*/}
+                    </div>
                 </div>
             </div>
-}
         </>
     );
 }
 
-export default ProductDetails;
+export default SingleProduct;
 
 {
     /* TODO: REMOVE Testing cart */

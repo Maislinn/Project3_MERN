@@ -44,7 +44,7 @@ export default function Products() {
                             </div>
                             <div className="group mt-8 flex justify-center items-center gap-3 p-4">
                                 <Button className="[background-color:#979291] px-4 py-2 rounded-lg">
-                                    <Link to={`/productdetails/${product._id}`}>
+                                    <Link to={`/product/${product._id}`}>
                                         Details
                                     </Link>
                                 </Button>
