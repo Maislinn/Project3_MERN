@@ -34,7 +34,7 @@ var Profile = function Profile() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _auth.default.loggedIn() ? /*#__PURE__*/_react.default.createElement("div", {
     className: "grid place-items-center"
   }, /*#__PURE__*/_react.default.createElement(_OrderHistory.default, null), /*#__PURE__*/_react.default.createElement("button", {
-    className: "[background-color:#f0afa3] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+    className: "[background-color:#f5bcb1] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
     type: "submit",
     onClick: logout
   }, "Log Out")) : /*#__PURE__*/_react.default.createElement("div", null, currentForm === "login" ? /*#__PURE__*/_react.default.createElement(_Login.default, {

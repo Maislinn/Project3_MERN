@@ -46,7 +46,7 @@ const PaymentForm = () => {
         <div className="cart">
             <div className='flex justify-center'>
                 <Card className="w-full max-w-[26rem] shadow-lg m-20 rounded-md align-content:center">
-                    <CardBody className="[background-color:#f0afa3] rounded-md">
+                    <CardBody className="[background-color:#f5bcb1] rounded-md">
                         <div className="[color:#979291] mb-6 p-4">
                 {state.cart.map((cartItem) => (
                     <CartItem key={cartItem.product._id} cartItem={cartItem} />

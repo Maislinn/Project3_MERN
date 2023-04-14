@@ -1,5 +1,5 @@
 nav {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   height: 60px;
 }
 
@@ -36,5 +36,9 @@ nav div li:first-child {
   margin-left: auto;
 }
 
-
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 

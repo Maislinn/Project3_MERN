@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = require("react");
+var React = require("react");
 var _react2 = _interopRequireDefault(require("./assets/react.svg"));
 require("./App.css");
 var _client = require("@apollo/client");
@@ -35,7 +35,7 @@ var httpLink = (0, _client.createHttpLink)({
   // uri: '/graphql',
   // credentials: 'same-origin'
   // prod - comment out when in dev
-  uri: 'https://georgia-evergreens.herokuapp.com/graphql'
+  uri: 'https://petpal.herokuapp.com/graphql'
   // dev - comment out when deploying
   //   uri: "http://localhost:3001/graphql",
 });

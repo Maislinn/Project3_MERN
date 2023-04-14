@@ -151,7 +151,7 @@ function SingleProduct() {
 
     return (
         <>
-            <div className="pb-12 mb-40 mt-10 [background-color:#f0afa3]">
+            <div className="pb-12 mb-40 mt-10 [background-color:#f5bcb1]">
                 <h2 className="text-3xl m-5 col-span-4 text-center [color:#979291]">
                     {product.name}
                 </h2>
@@ -216,7 +216,7 @@ function SingleProduct() {
                                 onClick={() => {
                                     addToCart(quantity);
                                 }}
-                                className=" [color:#f0afa3] [background-color:#979291] font-bold
+                                className=" [color:#f5bcb1] [background-color:#979291] font-bold
                             uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
                             outline-none focus:outline-no"
                                 type="submit"

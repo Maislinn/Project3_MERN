@@ -64,7 +64,7 @@ var PaymentForm = function PaymentForm() {
   }, /*#__PURE__*/_react.default.createElement(_react2.Card, {
     className: "w-full max-w-[26rem] shadow-lg m-20 rounded-md align-content:center"
   }, /*#__PURE__*/_react.default.createElement(_react2.CardBody, {
-    className: "[background-color:#f0afa3] rounded-md"
+    className: "[background-color:#f5bcb1] rounded-md"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "[color:#979291] mb-6 p-4"
   }, state.cart.map(function (cartItem) {

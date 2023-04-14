@@ -11,7 +11,18 @@ var _bs = require("react-icons/bs");
 var _Cart = _interopRequireDefault(require("./Cart"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function Header() {
-  return /*#__PURE__*/_react.default.createElement("header", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "grid grid-cols-3 max-h-60 place-items-center"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "col-span-1"
+  }), /*#__PURE__*/_react.default.createElement("img", {
+    className: "col-span-1 max-w-xs",
+    src: _PetPalLogo.default,
+    alt: "logo",
+    width: "150px"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "col-span-1"
+  })), /*#__PURE__*/_react.default.createElement("header", {
     className: ""
   }, /*#__PURE__*/_react.default.createElement("nav", {
     className: ""
@@ -32,8 +43,13 @@ function Header() {
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: " hover:text-gray-800 duration-200",
     to: "/contact"
-  }, "Contact")), /*#__PURE__*/_react.default.createElement("li", {
-    className: "m-5 mr-4 md:mr-6 float-right"
+  }, "Contact")))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", {
+    className: "[font-size:4.2vw] [color:rgba(242,241,233)] mr-4",
+    style: {
+      marginRight: "70px"
+    }
+  }, "Pet Pal")), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", {
+    className: "mt-2 m-5 mr-4 md:mr-6 float-right"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: " hover:text-gray-800 duration-200",
     to: "/profile"
@@ -41,17 +57,7 @@ function Header() {
     className: "text-2xl"
   }))), /*#__PURE__*/_react.default.createElement("li", {
     className: "mt-2 mr-4 md:mr-6 float-right"
-  }, /*#__PURE__*/_react.default.createElement(_Cart.default, null)))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "grid grid-cols-3 max-h-60 place-items-center"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "col-span-1"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    className: "col-span-1 max-w-xs",
-    src: _PetPalLogo.default,
-    alt: "logo"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "col-span-1"
-  })));
+  }, /*#__PURE__*/_react.default.createElement(_Cart.default, null)))));
 }
 var _default = Header;
 exports.default = _default;
