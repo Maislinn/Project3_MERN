@@ -1,32 +1,44 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_PRODUCTS = gql`
-query GetProducts {
-    getProducts {
-        _id
-        name
-        images {
-            original
-            thumbnail
-        }
-        description
-        notes
-        styles {
-            name
-            price
-            reducedPrice
-            weight {
-                value
-                unit
-            }
-            height {
-                value
-                unit
-            }
-        }
+{
+    products {
+      _id
+      image
+      name
+      description
+      price
+      services
+      # 🦄 add category here if needed
     }
-}
-`;
+  }
+  `;
+// query GetProducts {
+//     getProducts {
+//         _id
+//         name
+//         images {
+//             original
+//             thumbnail
+//         }
+//         description
+//         notes
+//         styles {
+//             name
+//             price
+//             reducedPrice
+//             weight {
+//                 value
+//                 unit
+//             }
+//             height {
+//                 value
+//                 unit
+//             }
+//         }
+//     }
+// }
+
 
 export const QUERY_SINGLE_PRODUCT = gql`
 query GetProduct($id: ID!) {

@@ -27,12 +27,12 @@ import Completion from "./components/Completion";
 // console.log(PORT);
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  // uri: '/graphql',
+  uri: '/graphql',
   // credentials: 'same-origin'
   // prod - comment out when in dev
-  uri: 'https://petpal.herokuapp.com/graphql'
+  // uri: 'https://petpal.herokuapp.com/graphql'
   // dev - comment out when deploying
-//   uri: "http://localhost:3001/graphql",
+  // uri: "http://localhost:3001/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
