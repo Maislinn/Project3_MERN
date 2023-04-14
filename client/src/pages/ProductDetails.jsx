@@ -5,26 +5,26 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
-// Display images from the database
-function Images({ images }) {
-    if (images.length > 0) {
-        return (
-            <>
-                <img
-                    alt="tree"
-                    className="w-screen object-cover rounded-md shadow-lg"
-                    src={`/${images[0].original}`}
-                />
-            </>
-        );
-    } else {
-        return (
-            <>
-                <img src="" alt=""></img>
-            </>
-        );
-    }
-}
+// // Display images from the database
+// function Images({ images }) {
+//     if (images.length > 0) {
+//         return (
+//             <>
+//                 <img
+//                     alt="tree"
+//                     className="w-screen object-cover rounded-md shadow-lg"
+//                     src={`/${images[0].original}`}
+//                 />
+//             </>
+//         );
+//     } else {
+//         return (
+//             <>
+//                 <img src="" alt=""></img>
+//             </>
+//         );
+//     }
+// }
 
 function SingleProduct() {
     const { id } = useParams();
@@ -101,7 +101,7 @@ function SingleProduct() {
         const result = event.target.value.replace(/\D/g, "");
         if (result) {
             setQuantity(result);
-        } 
+        }
     }
     // Styles renderer
     function StyleFeats({ style }) {
@@ -188,12 +188,11 @@ function SingleProduct() {
                                                 className="radio"
                                             >
                                                 <button
-                                                    className={`px-4 py-2 rounded ${
-                                                        selectedStyleName ==
+                                                    className={`px-4 py-2 rounded ${selectedStyleName ==
                                                         style.name
-                                                            ? "bg-red-400"
-                                                            : "bg-orange-300 "
-                                                    }`}
+                                                        ? "bg-red-400"
+                                                        : "bg-orange-300 "
+                                                        }`}
                                                     onClick={() => {
                                                         setSelectedStyleName(
                                                             style.name

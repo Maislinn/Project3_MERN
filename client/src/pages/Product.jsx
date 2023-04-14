@@ -6,20 +6,27 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
 
 export default function Product() {
+    let { id } = useParams();
+    console.log({id})
+    const [product, setProduct] = React.useState([]);
+    const [status, setStatus] = useState();
+    const [quantity, setQuantity] = React.useState(1);
     const [state, dispatch] = useStoreContext();
-    const { id } = useParams();
+    const { cart } = state;
   
-    const [product, setProduct] = useState([]);
+    const { loading, data, error } = useQuery(QUERY_PRODUCTS);
   
-    const { loading, data } = useQuery(QUERY_PRODUCTS,
-        {onCompleted: (data) => {
-            if (data && data.getProduct) {
-                setProduct(data.getProduct);
-                setSelectedStyleName(data.getProduct.styles[0].name);
-            }}
-        },);
-  
-    const { products } = state;
+    useEffect(() => {
+        if (data) {
+            setProduct(data);
+            console.log(product.products);
+        } else if (loading) {
+            setStatus("loading...");
+        } 
+        setStatus("something went")
+      }, [data, loading, error]);
+
+    // const { products } = state;
   
     // useEffect(() => {
     //   if (products) {
@@ -31,7 +38,55 @@ export default function Product() {
     //     });
     //   }
     // }, [products, data, dispatch, id]);
-  
+  // Adding product to cart
+  function addToCart(amount) {
+    // Checking to see if a particular item is already in cart
+
+    // First get the selected style object
+    const selectedStyle = product.styles.find(
+        (s) => s.name === selectedStyleName
+    );
+
+    // then iterate through the cart to see if a CartItem has the same product id and style string
+    const existingCartItem = cart.find(
+        (_item) =>
+            _item.product._id === id &&
+            selectedStyle.name === _item.style.name
+    );
+
+    if (existingCartItem) {
+        console.log("Update cart");
+        let quantity = 0;
+        if (amount) {
+            quantity =
+                parseInt(existingCartItem.quantity) + parseInt(amount);
+        } else {
+            quantity = parseInt(existingCartItem.quantity) + 1;
+        }
+        dispatch({
+            type: UPDATE_CART_QUANTITY,
+            cartItem: {
+                ...existingCartItem,
+                quantity: quantity,
+            },
+        });
+        // If item is not already in the cart add one of item
+    } else {
+        console.log("add to cart");
+        let quantity = 1;
+        if (amount) {
+            quantity = parseInt(amount);
+        }
+        dispatch({
+            type: ADD_TO_CART,
+            cartItem: {
+                product: product,
+                style: selectedStyle,
+                quantity: quantity,
+            },
+        });
+    }
+}
     return (
       <>
         {product ? (
