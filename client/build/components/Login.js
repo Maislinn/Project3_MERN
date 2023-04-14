@@ -117,7 +117,7 @@ var Login = function Login(props) {
     className: "px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full",
     name: "password"
   })), /*#__PURE__*/_react.default.createElement("button", {
-    className: "[background-color:#f0afa3] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+    className: "[background-color:#f5bcb1] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
     type: "submit"
   }, "Log In")), error && /*#__PURE__*/_react.default.createElement("div", {
     className: "m-5 grid place-items-center"

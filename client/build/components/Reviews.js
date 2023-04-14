@@ -62,7 +62,7 @@ function Reviews() {
     itemClass: "carousel-item-padding-40-px"
   }, _CarouselData.carouselData.map(function (data) {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: "card p-5 [background-color:#f0afa3] h-full m-1 rounded"
+      className: "card p-5 [background-color:#f5bcb1] h-full m-1 rounded"
     }, /*#__PURE__*/_react.default.createElement("img", {
       className: " rounded-md",
       src: data.image,

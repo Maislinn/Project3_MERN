@@ -47,7 +47,7 @@ export default function Example() {
             {products.map((product) => {
                 return (
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
-                        <CardBody className="[background-color:#f0afa3] rounded-md">
+                        <CardBody className="[background-color:#f5bcb1] rounded-md">
                             <div className="mb-3">
                                 <img
                                     src={`/${product.images[0].original}`}

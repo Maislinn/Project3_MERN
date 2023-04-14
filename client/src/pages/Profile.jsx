@@ -23,7 +23,7 @@ const Profile = () => {
           {/* if logged in display order history, if not display login/signup forms */}
           <OrderHistory />
           <button
-              className="[background-color:#f0afa3] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              className="[background-color:#f5bcb1] [color:#9c9897] active:bg-neutral-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="submit"
               onClick={logout}
             >

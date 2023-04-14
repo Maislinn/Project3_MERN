@@ -25,34 +25,33 @@ function Banner() {
                 <img
                     className=" w-screen z-0 "
                     src="/imgs/Couple-with-Cat.png"
-                    alt="arborvitae trees"
+                    alt="couple with cat"
                 />
             </div>
             <div className="absolute flex flex-row text-left top-5 p-4 [width:100%] h-30 z-10 rounded">
                 <div className="[width:50%] flex flex-row ml-5">
-                    <p className="[font-size:4.2vw] [color:rgba(242,241,233)]">
-                        Create beautiful evergreen privacy with our premium
-                        trees.
-                    </p>
+                    {/* <p className="[font-size:4.2vw] [color:rgba(242,241,233)]">
+                        Pet Pal
+                    </p> */}
                 </div>
             </div>
-            <div className="absolute  opacity-70 gap-3 flex flex-row text-left -bottom-0  p-4 [background-color:rgba(242,241,233)] [width:100%] [height:90px] z-10 rounded ">
+            {/* <div className="absolute  opacity-70 gap-3 flex flex-row text-left -bottom-0  p-4 [background-color:rgba(242,241,233)] [width:100%] [height:90px] z-10 rounded ">
                 <ImageCard
-                    img="/imgs/trees-icon.png"
-                    title="Order"
-                    description="Select the trees you want"
+                    img=""
+                    title=""
+                    description=""
                 />
                 <ImageCard
-                    img="/imgs/deliver-icon.png"
-                    title="Deliver"
-                    description="We drive straight to your door"
+                    img=""
+                    title=""
+                    description=""
                 />
                 <ImageCard
-                    img="/imgs/planter-icon.png"
-                    title="Install"
-                    description="We provide professional planting"
+                    img=""
+                    title=""
+                    description=""
                 />
-            </div>
+            </div> */}
         </div>
     );
 }

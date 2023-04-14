@@ -162,7 +162,7 @@ function SingleProduct() {
     }, "Product Not Found")));
   }
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "pb-12 mb-40 mt-10 [background-color:#f0afa3]"
+    className: "pb-12 mb-40 mt-10 [background-color:#f5bcb1]"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl m-5 col-span-4 text-center [color:#979291]"
   }, product.name), /*#__PURE__*/_react.default.createElement("div", {
@@ -209,7 +209,7 @@ function SingleProduct() {
     onClick: function onClick() {
       addToCart(quantity);
     },
-    className: " [color:#f0afa3] [background-color:#979291] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg  outline-none focus:outline-no",
+    className: " [color:#f5bcb1] [background-color:#979291] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg  outline-none focus:outline-no",
     type: "submit"
   }, "Add to Cart"), "Types: ", cart.length, /*#__PURE__*/_react.default.createElement("br", null), "Total Amount", cart.reduce(function (total, current) {
     return total + current.quantity;

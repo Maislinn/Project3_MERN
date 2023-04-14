@@ -50,7 +50,7 @@ function Example() {
       key: product._id,
       className: "w-full max-w-[26rem] shadow-lg m-10 rounded-md"
     }, /*#__PURE__*/_react2.default.createElement(_react.CardBody, {
-      className: "[background-color:#f0afa3] rounded-md"
+      className: "[background-color:#f5bcb1] rounded-md"
     }, /*#__PURE__*/_react2.default.createElement("div", {
       className: "mb-3"
     }, /*#__PURE__*/_react2.default.createElement("img", {

@@ -30,7 +30,7 @@ const httpLink = createHttpLink({
   // uri: '/graphql',
   // credentials: 'same-origin'
   // prod - comment out when in dev
-  uri: 'https://georgia-evergreens.herokuapp.com/graphql'
+  uri: 'https://petpal.herokuapp.com/graphql'
   // dev - comment out when deploying
 //   uri: "http://localhost:3001/graphql",
 });
