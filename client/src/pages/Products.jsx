@@ -8,13 +8,14 @@ import {
     Tooltip,
     IconButton,
 } from "@material-tailwind/react";
-import React from "react";
+import React, {useState} from "react";
 import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 
 
-export default function Example() {
+
+export default function Products() {
     const [products, setProducts] = React.useState([]);
     const { loading, error } = useQuery(QUERY_PRODUCTS, {
         onCompleted: (data) => {
