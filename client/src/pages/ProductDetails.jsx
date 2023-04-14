@@ -26,7 +26,7 @@ import { useQuery } from "@apollo/client";
 //     }
 // }
 
-function SingleProduct() {
+export default function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = React.useState([]);
     const [selectedStyleName, setSelectedStyleName] = React.useState(0);
@@ -36,9 +36,8 @@ function SingleProduct() {
     const { loading, error } = useQuery(QUERY_SINGLE_PRODUCT, {
         variables: { id },
         onCompleted: (data) => {
-            if (data && data.getProduct) {
-                setProduct(data.getProduct);
-                setSelectedStyleName(data.getProduct.styles[0].name);
+            if (data && data.product) {
+                setProduct(data.product);
             }
         },
     });
@@ -93,44 +92,44 @@ function SingleProduct() {
         }
     }
 
-    function handleInput(event) {
-        if (event.target.value.length === 0) {
-            setQuantity(1)
-            return
-        }
-        const result = event.target.value.replace(/\D/g, "");
-        if (result) {
-            setQuantity(result);
-        }
-    }
-    // Styles renderer
-    function StyleFeats({ style }) {
-        if (style) {
-            return (
-                <div className="mb-4">
-                    <div className="text-green text-lg font-bold">
-                        ${style.price}
-                    </div>
+    // function handleInput(event) {
+    //     if (event.target.value.length === 0) {
+    //         setQuantity(1)
+    //         return
+    //     }
+    //     const result = event.target.value.replace(/\D/g, "");
+    //     if (result) {
+    //         setQuantity(result);
+    //     }
+    // }
+    // // Styles renderer
+    // function StyleFeats({ style }) {
+    //     if (style) {
+    //         return (
+    //             <div className="mb-4">
+    //                 <div className="text-green text-lg font-bold">
+    //                     ${style.price}
+    //                 </div>
 
-                    <div className="">
-                        <input
-                            type="text"
-                            placeholder="Amount"
-                            value={quantity ? `${quantity}` : ""}
-                            // value={`${quantity ? quantity : ""}`}
-                            onChange={handleInput}
-                        ></input>
-                    </div>
-                    {/* {style.reducedPrice}
-                {style.height.value}
-                {style.height.unit}
-                {style.weight.value}
-                {style.weight.unit} */}
-                </div>
-            );
-        }
-        return <></>;
-    }
+    //                 <div className="">
+    //                     <input
+    //                         type="text"
+    //                         placeholder="Amount"
+    //                         value={quantity ? `${quantity}` : ""}
+    //                         // value={`${quantity ? quantity : ""}`}
+    //                         onChange={handleInput}
+    //                     ></input>
+    //                 </div>
+    //                 {/* {style.reducedPrice}
+    //             {style.height.value}
+    //             {style.height.unit}
+    //             {style.weight.value}
+    //             {style.weight.unit} */}
+    //             </div>
+    //         );
+    //     }
+    //     return <></>;
+    // }
 
 
     if (loading) {
@@ -236,7 +235,6 @@ function SingleProduct() {
     );
 }
 
-export default SingleProduct;
 
 {
     /* TODO: REMOVE Testing cart */

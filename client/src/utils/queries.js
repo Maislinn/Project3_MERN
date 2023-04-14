@@ -14,7 +14,7 @@ query GetProducts {
   `;
 
 export const QUERY_SINGLE_PRODUCT = gql`
-query GetProduct($_id: ID!) {
+query GetProduct($id: ID!) {
     product(_id: $id) {
       _id
       name
