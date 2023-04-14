@@ -13,57 +13,16 @@ export const QUERY_PRODUCTS = gql`
     }
   }
   `;
-// query GetProducts {
-//     getProducts {
-//         _id
-//         name
-//         images {
-//             original
-//             thumbnail
-//         }
-//         description
-//         notes
-//         styles {
-//             name
-//             price
-//             reducedPrice
-//             weight {
-//                 value
-//                 unit
-//             }
-//             height {
-//                 value
-//                 unit
-//             }
-//         }
-//     }
-// }
-
 
 export const QUERY_SINGLE_PRODUCT = gql`
-query GetProduct($id: ID!) {
-    getProduct(_id: $id) {
+{
+    product(_id: $id) {
         _id
         name
-        images {
-            original
-            thumbnail
-        }
+        image
         description
-        notes
-        styles {
-            name
-            price
-            reducedPrice
-            weight {
-                value
-                unit
-            }
-            height {
-                value
-                unit
-            }
-        }
+        price
+        services
     }
 }
 `;
