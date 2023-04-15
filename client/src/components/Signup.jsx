@@ -50,21 +50,36 @@ const SignUp = (props) => {
         ) : (
           <form onSubmit={handleSubmit} className="m-5 grid place-items-center">
             <div className="mb-3 w-1/2">
-              {/* ❄️ MX: updated name input */}
+              {/* ❄️ MX: updated name input to match with mutation & user model */}
               {/* <label htmlFor="username">username</label> */}
-              <label htmlFor="username">First and Last Name</label>
+              <label htmlFor="username">First Name</label>
               <input
                 value={formState.name}
                 onChange={handleChange}
                 type="text"
-                // ❄️ MX: updated placeholder value
-                placeholder="your first and last name"
-                // ❄️ MX-TODO ⏰: id to be updated
+                placeholder="enter first name"
                 id="username"
                 className="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full"
-                name="username"
+                // ❄️: changed first input to firstName
+                name="firstName"
+              ></input>
+              {/* ❄️ MX: added last name div */}
+            </div>
+            <div className="mb-3 w-1/2">
+              {/* ❄️ MX: updated name input */}
+              <label htmlFor="username">Last Name</label>
+              <input
+                value={formState.name}
+                onChange={handleChange}
+                type="text"
+                placeholder="enter last name"
+                id="username"
+                className="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full"
+                // ❄️: changed second input to lastName
+                name="lastName"
               ></input>
             </div>
+
             <div className="mb-3 w-1/2">
               <label htmlFor="email">email</label>
               <input
