@@ -8,19 +8,11 @@ import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
 export default function Product() {
     let { id } = useParams();
     console.log({ id })
-    const [product, setProduct] = React.useState({});
-    const [quantity, setQuantity] = React.useState(1);
+    const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
     const [state, dispatch] = useStoreContext();
     const { cart } = state;
 
-    // const { loading, data, error } = useQuery(QUERY_PRODUCTS);
-    // console.log(data);
-
-    // const findSelected = (data) => {
-    //     // data.products.map((product) => console.log(product))
-    //     return data.products.filter(product => product._id === id);
-    // }
-    // }
     const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT, {
         variables: { id },
         onCompleted: (data) => {
@@ -30,43 +22,9 @@ export default function Product() {
         }
     });
 
-
-
-
-
-
-    // useEffect(() => {
-    //     if (data) {
-    //         setProduct(findSelected(data)[0]);
-    //         console.log(product.name);
-    //     } else if (loading) {
-    //         setStatus("loading...");
-    //     } 
-    //     setStatus("something went")
-    //   }, [data, loading, error]);
-
-    // const { products } = state;
-
-    // useEffect(() => {
-    //   if (products) {
-    //     setProduct(products.find((product) => product._id === id));
-    //   } else if (data) {
-    //     dispatch({
-    //       type: UPDATE_PRODUCTS,
-    //       products: data.products,
-    //     });
-    //   }
-    // }, [products, data, dispatch, id]);
     // Adding product to cart
     function addToCart(amount) {
         // Checking to see if a particular item is already in cart
-
-        // First get the selected style object
-        const selectedStyle = product.styles.find(
-            (s) => s.name === selectedStyleName
-        );
-
-        // then iterate through the cart to see if a CartItem has the same product id and style string
         const existingCartItem = cart.find(
             (_item) =>
                 _item.product._id === id &&
@@ -131,7 +89,7 @@ export default function Product() {
                     <img
                         src={`/imgs/${product.image}`}
                         alt={product.name}
-                        className="rounded-t-xl"
+                        className="ml-3 rounded-3xl flex-none w-80"
                     ></img>
                     <div className="m-5">
                         <div className="card">
@@ -140,33 +98,31 @@ export default function Product() {
                                     {product.description}
                                 </div>
                                 <div className="m-5 [color:#979291]">
-                                    {product.notes}
+                                <p>Price: {product.price} </p>                               
                                 </div>
                             </div>
                         </div>
+                        <p className="m-5 [color:#979291]">  </p>
+                        <button
+                                onClick={() => {
+                                    addToCart(quantity);
+                                }}
+                                className=" [color:#f5bcb1] [background-color:#979291] font-bold
+                            uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
+                            outline-none focus:outline-no"
+                                type="submit"
+                            >
+                                Add to Cart
+                            </button>
+                            Types: {cart.length}
+                            <br />
+                            Total Amount
+                            {cart.reduce((total, current) => {
+                                return total + current.quantity;
+                            }, 0)}
                     </div>
                 </div>
             </div>
-            {/* {product ? (
-          <div className="container my-1">
-            <Link to="/products">← Back to Products</Link>
-  
-            <h2>{product.name}</h2>
-  
-            <p>{product.description}</p>
-  
-            <p>
-              <strong>Price:</strong>${product.price}{' '}
-              <button>Add to Cart</button>
-              <button>Remove from Cart</button>
-            </p>
-  
-            <img
-              src={`/imgs/${product.image}`}
-              alt={product.name}
-            />
-          </div>
-        ) : null} */}
         </>
     );
 }
