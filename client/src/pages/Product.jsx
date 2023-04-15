@@ -5,6 +5,8 @@ import { useQuery } from "@apollo/client";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
 
+import Calendar from '../components/Calendar';
+
 export default function Product() {
     let { id } = useParams();
     console.log({ id })
@@ -98,28 +100,29 @@ export default function Product() {
                                     {product.description}
                                 </div>
                                 <div className="m-5 [color:#979291]">
-                                <p>Price: {product.price} </p>                               
+                                    <p>Price: {product.price} </p>
                                 </div>
                             </div>
                         </div>
+                        <Calendar />
                         <p className="m-5 [color:#979291]">  </p>
                         <button
-                                onClick={() => {
-                                    addToCart(quantity);
-                                }}
-                                className=" [color:#f5bcb1] [background-color:#979291] font-bold
+                            onClick={() => {
+                                addToCart(quantity);
+                            }}
+                            className=" [color:#f5bcb1] [background-color:#979291] font-bold
                             uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
                             outline-none focus:outline-no"
-                                type="submit"
-                            >
-                                Add to Cart
-                            </button>
-                            Types: {cart.length}
-                            <br />
-                            Total Amount
-                            {cart.reduce((total, current) => {
-                                return total + current.quantity;
-                            }, 0)}
+                            type="submit"
+                        >
+                            Add to Cart
+                        </button>
+                        Types: {cart.length}
+                        <br />
+                        Total Amount
+                        {cart.reduce((total, current) => {
+                            return total + current.quantity;
+                        }, 0)}
                     </div>
                 </div>
             </div>
