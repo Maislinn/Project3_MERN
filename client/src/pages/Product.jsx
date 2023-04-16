@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
 
-import Calendar from '../components/Calendar';
+import Datepicker from '../components/Datepicker';
 
 export default function Product() {
     let { id } = useParams();
@@ -104,7 +104,7 @@ export default function Product() {
                                 </div>
                             </div>
                         </div>
-                        <Calendar />
+                        <Datepicker />
                         <p className="m-5 [color:#979291]">  </p>
                         <button
                             onClick={() => {
