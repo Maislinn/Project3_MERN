@@ -24,13 +24,23 @@ export default function Product() {
         }
     });
 
+        function handleInput(event) {
+        if (event.target.value.length === 0) {
+            setQuantity(1)
+            return
+        }
+        const result = event.target.value.replace(/\D/g, "");
+        if (result) {
+            setQuantity(result);
+        }
+    }
+
     // Adding product to cart
     function addToCart(amount) {
         // Checking to see if a particular item is already in cart
         const existingCartItem = cart.find(
             (_item) =>
-                _item.product._id === id &&
-                selectedStyle.name === _item.style.name
+                _item.product._id === id
         );
 
         if (existingCartItem) {
@@ -100,7 +110,7 @@ export default function Product() {
                                     {product.description}
                                 </div>
                                 <div className="m-5 [color:#979291]">
-                                    <p>Price: {product.price} </p>
+                                    <p>Price: ${product.price}</p>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +118,7 @@ export default function Product() {
                         <p className="m-5 [color:#979291]">  </p>
                         <button
                             onClick={() => {
-                                addToCart(quantity);
+                                addToCart(value);
                             }}
                             className=" [color:#f5bcb1] [background-color:#979291] font-bold
                             uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
