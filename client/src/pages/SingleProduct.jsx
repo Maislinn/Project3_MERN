@@ -38,6 +38,7 @@ function SingleProduct() {
         onCompleted: (data) => {
             if (data && data.getProduct) {
                 setProduct(data.getProduct);
+                // ❄️ MX: ❓ ⤵️ no "styles" in the database
                 setSelectedStyleName(data.getProduct.styles[0].name);
             }
         },
@@ -169,6 +170,7 @@ function SingleProduct() {
                                     {product.description}
                                 </div>
                                 <div className="m-5 [color:#979291]">
+                                    {/* //❄️ MX: ❓ ⤵️ no "notes" in models */}
                                     {product.notes}
                                 </div>
                             </div>
