@@ -1,142 +1,121 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useStoreContext } from "../utils/state";
-import { useQuery } from "@apollo/client";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
+// 🦄 rbk: added product details from client-origin
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
-import Datepicker from '../components/Datepicker';
+import Cart from '../components/Cart';
+import { useStoreContext } from '../utils/state';
+import {
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+  ADD_TO_CART,
+  UPDATE_PRODUCTS,
+} from '../utils/actions';
+import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from '../utils/queries';
+import { idbPromise } from '../utils/helpers';
 
-export default function ProductDetails() {
-    let { id } = useParams();
-    console.log({ id })
-    const [product, setProduct] = useState({});
-    const [quantity, setQuantity] = useState(1);
-    const [state, dispatch] = useStoreContext();
-    const { cart } = state;
+function Detail() {
+  const [state, dispatch] = useStoreContext();
+  const { id } = useParams();
 
-    const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT, {
-        variables: { id },
-        onCompleted: (data) => {
-            if (data.product) {
-                setProduct(data.product);
-            }
-        }
+  const [currentProduct, setCurrentProduct] = useState({});
+//   const { loading, data } = useQuery(QUERY_PRODUCTS);
+
+  const { products, cart } = state;
+
+  const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT)
+//   , {
+//     variables: { id },
+//     onCompleted: (data) => {
+//         if (data.product) {
+//             setCurrentProduct(data.product);
+//             console.log(data.product);
+//         }
+//     }
+// });
+
+  useEffect(() => {
+    // already in global store
+    if (products.length) {
+      setCurrentProduct(products.find((product) => product._id === id));
+    }
+    // retrieved from server
+    if (data) {
+      dispatch({
+        type: UPDATE_PRODUCTS,
+        products: data.products,
+      });
+
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      });
+    }
+    // get cache from idb
+    else if (!loading) {
+      idbPromise('products', 'get').then((indexedProducts) => {
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts,
+        });
+      });
+    }
+  }, [products, data, loading, dispatch, id]);
+
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...currentProduct, purchaseQuantity: 1 },
+      });
+      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+    }
+  };
+
+  const removeFromCart = () => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      _id: currentProduct._id,
     });
 
-        function handleInput(event) {
-        if (event.target.value.length === 0) {
-            setQuantity(1)
-            return
-        }
-        const result = event.target.value.replace(/\D/g, "");
-        if (result) {
-            setQuantity(result);
-        }
-    }
+    idbPromise('cart', 'delete', { ...currentProduct });
+  };
 
-    // Adding product to cart
-    function addToCart(amount) {
-        // Checking to see if a particular item is already in cart
-        const existingCartItem = cart.find(
-            (_item) =>
-                _item.product._id === id
-        );
+  return (
+    <>
+      {currentProduct && cart ? (
+        <div className="container my-1">
+          <Link to="/">← Back to Products</Link>
 
-        if (existingCartItem) {
-            console.log("Update cart");
-            let quantity = 0;
-            if (amount) {
-                quantity =
-                    parseInt(existingCartItem.quantity) + parseInt(amount);
-            } else {
-                quantity = parseInt(existingCartItem.quantity) + 1;
-            }
-            dispatch({
-                type: UPDATE_CART_QUANTITY,
-                cartItem: {
-                    ...existingCartItem,
-                    quantity: quantity,
-                },
-            });
-            // If item is not already in the cart add one of item
-        } else {
-            console.log("add to cart");
-            let quantity = 1;
-            if (amount) {
-                quantity = parseInt(amount);
-            }
-            dispatch({
-                type: ADD_TO_CART,
-                cartItem: {
-                    product: product,
-                    style: selectedStyle,
-                    quantity: quantity,
-                },
-            });
-        }
-    }
+          <h2>{currentProduct.name}</h2>
 
+          <p>{currentProduct.description}</p>
 
-    if (loading) {
-        return "Loading...";
-    } else if (error) {
-        return `Error! ${error.message}`;
-    } else if (!product || !product._id) {
-        return (
-            <>
-                <div className="m-10 flex flex-col justify-center align-center">
-                    <h1 className="text-center">Product Not Found</h1>
-                </div>
-            </>
-        );
-    }
-    return (
-        <>
-            <div className="pb-12 mb-40 mt-10 [background-color:#f5bcb1]">
-                <h2 className="text-3xl m-5 col-span-4 text-center [color:#979291]">
-                    {product.name}
-                </h2>
-                <div className="flex flex-col md:flex-row justify-center items-center">
-                    <img
-                        src={`/imgs/${product.image}`}
-                        alt={product.name}
-                        className="ml-3 rounded-3xl flex-none w-80"
-                    ></img>
-                    <div className="m-5">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className=" [color:#979291]">
-                                    {product.description}
-                                </div>
-                                <div className="m-5 [color:#979291]">
-                                    <p>Price: ${product.price}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <Datepicker />
-                        <p className="m-5 [color:#979291]">  </p>
-                        <button
-                            onClick={() => {
-                                addToCart(value);
-                            }}
-                            className=" [color:#f5bcb1] [background-color:#979291] font-bold
-                            uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
-                            outline-none focus:outline-no"
-                            type="submit"
-                        >
-                            Add to Cart
-                        </button>
-                        Types: {cart.length}
-                        <br />
-                        Total Amount
-                        {cart.reduce((total, current) => {
-                            return total + current.quantity;
-                        }, 0)}
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+          <p>
+            <strong>Price:</strong>${currentProduct.price}{' '}
+            <button onClick={addToCart}>Add to Cart</button>
+          </p>
+
+          <img
+            src={`/imgs/${currentProduct.image}`}
+            alt={currentProduct.name}
+          />
+        </div>
+      ) : null}
+      {loading ? <p>Loading Products</p> : null}
+      <Cart />
+    </>
+  );
 }
-;
+
+export default Detail;
