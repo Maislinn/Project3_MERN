@@ -26,15 +26,6 @@ function Detail() {
   const { products, cart } = state;
 
   const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT)
-//   , {
-//     variables: { id },
-//     onCompleted: (data) => {
-//         if (data.product) {
-//             setCurrentProduct(data.product);
-//             console.log(data.product);
-//         }
-//     }
-// });
 
   useEffect(() => {
     // already in global store
