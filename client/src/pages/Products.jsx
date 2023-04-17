@@ -1,46 +1,29 @@
 import {
     Card,
-    CardHeader,
     CardBody,
-    CardFooter,
-    Typography,
     Button,
-    Tooltip,
-    IconButton,
 } from "@material-tailwind/react";
-import React from "react";
-import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
+import React, { useState, useEffect } from "react";
+import { QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 
 
-export default function Example() {
-    const [products, setProducts] = React.useState([]);
-    const { loading, error } = useQuery(QUERY_PRODUCTS, {
-        onCompleted: (data) => {
-            if (data && data.getProducts) {
-                setProducts(data.getProducts);
-            }
-        },
-    });
+export default function Products() {
+    const [products, setProducts] = useState([]);
+    const [status, setStatus] = useState();
+    const { loading, data, error } = useQuery(QUERY_PRODUCTS);
 
-    if (loading) {
-        return <h2>Loading</h2>;
-    }
+    useEffect(() => {
+        if (data) {
+            setProducts(data.products);
+        } else if (loading) {
+            setStatus("loading...");
+        } 
+        setStatus(error)
+      }, [data, loading, error]);
 
-    if (error) {
-        return <p>{error}</p>;
-    }
 
-    if (!products) {
-        return (
-            <>
-                <div className="m-10 flex flex-col justify-center align-center">
-                    <h1 className="text-center">Service Not Found</h1>
-                </div>
-            </>
-        );
-    }
 
     return (
         <div className="container justify-center flex flex-wrap">
@@ -50,8 +33,8 @@ export default function Example() {
                         <CardBody className="[background-color:#f5bcb1] rounded-md">
                             <div className="mb-3">
                                 <img
-                                    src={`/${product.images[0].original}`}
-                                    alt={`${product.images[0].original}`}
+                                    src={`/imgs/${product.image}`}
+                                    alt={product.name}
                                     className="rounded-t-xl"
                                 ></img>
                                 <div className="font-medium [color:#979291]">

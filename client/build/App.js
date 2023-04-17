@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var React = require("react");
+var _react = require("react");
 var _react2 = _interopRequireDefault(require("./assets/react.svg"));
 require("./App.css");
 var _client = require("@apollo/client");
