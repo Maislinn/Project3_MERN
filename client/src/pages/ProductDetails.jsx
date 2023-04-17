@@ -54,15 +54,15 @@ export default function ProductDetails() {
         type: ADD_TO_CART,
         cartItem: { 
             product: product,
-            startDate: newValue.startDate, 
-            endDate: newValue.endDate,
+            // startDate: newValue.startDate, 
+            // endDate: newValue.endDate,
             purchaseQuantity: 1 },
     });
     console.log(product)
       idbPromise('cart', 'put', { cartItem: { 
         product: product,
-        startDate: newValue.startDate, 
-        endDate: newValue.endDate,
+        // startDate: newValue.startDate, 
+        // endDate: newValue.endDate,
         purchaseQuantity: 1 }
     });
     }
