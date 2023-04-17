@@ -25,11 +25,8 @@
 // }
 
 // export { StoreProvider, useStoreContext, initialState };
-<<<<<<< HEAD
-=======
 
 
->>>>>>> rbk-debugCart
 import React, { createContext, useContext } from "react";
 import { useProductReducer } from './reducers'
 
