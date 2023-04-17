@@ -12,22 +12,41 @@ import { Link } from "react-router-dom";
 export default function Products() {
     const [products, setProducts] = useState([]);
     const [status, setStatus] = useState();
-    const { loading, data, error } = useQuery(QUERY_PRODUCTS);
+    const { loading, data, error } = useQuery(QUERY_PRODUCTS, {
+        onCompleted: (data) => {
+            if (data.products) {
+                setProducts(data.products);
+            }
+        }
+    });
 
-    useEffect(() => {
-        if (data) {
-            setProducts(data.products);
-        } else if (loading) {
-            setStatus("loading...");
-        } 
-        setStatus(error)
-      }, [data, loading, error]);
+    // useEffect(() => {
+    //     if (data) {
+    //         setProducts(data.products);
+    //     } else if (loading) {
+    //         setStatus("loading...");
+    //     } 
+    //     setStatus("something went")
+    //   }, [data, loading, error]);
 
 
-
+    if (loading) {
+        return "Loading...";
+    } else if (error) {
+        return `Error! ${error.message}`;
+    } else if (!products) {
+        return (
+            <>
+                <div className="m-10 flex flex-col justify-center align-center">
+                    <h1 className="text-center">Product Not Found</h1>
+                </div>
+            </>
+        );
+    }
     return (
         <div className="container justify-center flex flex-wrap">
-            {products.map((product) => {
+            {!products && <p>{status}</p>}
+            {products && products.map((product) => {
                 return (
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
                         <CardBody className="[background-color:#f5bcb1] rounded-md">
@@ -43,7 +62,7 @@ export default function Products() {
                             </div>
                             <div className="group mt-8 flex justify-center items-center gap-3 p-4">
                                 <Button className="[background-color:#979291] px-4 py-2 rounded-lg">
-                                    <Link to={`/productdetails/${product._id}`}>
+                                    <Link to={`/product/${product._id}`}>
                                         Details
                                     </Link>
                                 </Button>
