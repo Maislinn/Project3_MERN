@@ -19,7 +19,8 @@ import ContactForm from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import ProductDetails from "./pages/ProductDetails";
+// import ProductDetails from "./pages/ProductDetails";
+import ProductDetails from './pages/DebugDetail'
 import OrderHistory from "./components/OrderHistory";
 import PaymentForm from "./components/PaymentForm";
 import Completion from "./components/Completion";
