@@ -19,7 +19,7 @@ import ContactForm from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import SingleProduct from "./pages/SingleProduct";
+import ProductDetails from "./pages/ProductDetails";
 import OrderHistory from "./components/OrderHistory";
 import PaymentForm from "./components/PaymentForm";
 import Completion from "./components/Completion";
@@ -67,7 +67,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/productdetails/:id" element={<SingleProduct />} />
+              <Route path="/productdetails/:id" element={<ProductDetails />} />
               <Route path="/orderhistory" element={<OrderHistory />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/profile" element={<Profile />} />
