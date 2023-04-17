@@ -1,33 +1,55 @@
+import React, { useState, useEffect } from "react";
 import {
     Card,
     CardBody,
     Button,
 } from "@material-tailwind/react";
-import React, { useState, useEffect } from "react";
+import { useStoreContext } from '../utils/state';
+import { UPDATE_PRODUCTS } from '../utils/actions';
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-
+import { idbPromise } from '../utils/helpers';
 
 export default function Products() {
-    const [products, setProducts] = useState([]);
-    const [status, setStatus] = useState();
-    const { loading, data, error } = useQuery(QUERY_PRODUCTS);
+    const [state, dispatch] = useStoreContext();
+    const { currentCategory } = state;
 
-    useEffect(() => {
-        if (data) {
-            setProducts(data.products);
-        } else if (loading) {
-            setStatus("loading...");
-        } 
-        setStatus(error)
-      }, [data, loading, error]);
+    const { loading, data } = useQuery(QUERY_PRODUCTS);
 
+        useEffect(() => {
+            if (data) {
+              dispatch({
+                type: UPDATE_PRODUCTS,
+                products: data.products,
+              });
+              data.products.forEach((product) => {
+                idbPromise('products', 'put', product);
+              });
+            } else if (!loading) {
+              idbPromise('products', 'get').then((products) => {
+                dispatch({
+                  type: UPDATE_PRODUCTS,
+                  products: products,
+                });
+              });
+            }
+          }, [data, loading, dispatch]);
+        
+          function filterProducts() {
+            if (!currentCategory) {
+              return state.products;
+            }
+        
+            return state.products.filter(
+              (product) => product.category._id === currentCategory
+            );
 
-
+    }
     return (
         <div className="container justify-center flex flex-wrap">
-            {products.map((product) => {
+            {/* {!products && <p>{status}</p>} */}
+            {state.products && state.products.map((product) => {
                 return (
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
                         <CardBody className="[background-color:#f5bcb1] rounded-md">
