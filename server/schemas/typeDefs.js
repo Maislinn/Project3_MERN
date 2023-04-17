@@ -47,11 +47,7 @@ const typeDefs = gql`
     categories: [Category]
 
     products: [Product]
-<<<<<<< HEAD
     product(_id: ID!): Product
-=======
-    product(productId: ID!): Product
->>>>>>> 7f48aa3a8d2b48804a7be639e3641a684885a6be
 
     # 🦄 rbk: added just to check users in apollo sandbox
     users: [User]!
