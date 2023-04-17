@@ -17,32 +17,6 @@ export default function Products() {
 
     const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-    // const [products, setProducts] = useState([]);
-    // const [status, setStatus] = useState();
-    // const { loading, data, error } = useQuery(QUERY_PRODUCTS)
-    // , {
-    //     onCompleted: (data) => {
-    //         if (data.products) {
-    //             setProducts(data.products);
-    //         }
-    //     }
-    // });
-
-    // useEffect(() => {
-    //     if (data) {
-    //         setProducts(data.products);
-    //     } else if (loading) {
-    //         setStatus("loading...");
-    //     } 
-    //     setStatus("something went")
-    //   }, [data, loading, error]);
-
-
-    // if (loading) {
-    //     return "Loading...";
-    // } else if (error) {
-    //     return `Error! ${error.message}`;
-    // } else if (!products) {
         useEffect(() => {
             if (data) {
               dispatch({
@@ -71,13 +45,6 @@ export default function Products() {
               (product) => product.category._id === currentCategory
             );
 
-        // return (
-        //     <>
-        //         <div className="m-10 flex flex-col justify-center align-center">
-        //             <h1 className="text-center">Product Not Found</h1>
-        //         </div>
-        //     </>
-        // );
     }
     return (
         <div className="container justify-center flex flex-wrap">

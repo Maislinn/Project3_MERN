@@ -25,42 +25,43 @@ function Detail() {
 
   const { products, cart } = state;
 
-  const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT, {
-    variables: { id },
-    onCompleted: (data) => {
-        if (data.product) {
-            setCurrentProduct(data.product);
-            console.log(data.product);
-        }
+  const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT)
+//   , {
+//     variables: { id },
+//     onCompleted: (data) => {
+//         if (data.product) {
+//             setCurrentProduct(data.product);
+//             console.log(data.product);
+//         }
+//     }
+// });
+
+  useEffect(() => {
+    // already in global store
+    if (products.length) {
+      setCurrentProduct(products.find((product) => product._id === id));
     }
-});
+    // retrieved from server
+    if (data) {
+      dispatch({
+        type: UPDATE_PRODUCTS,
+        products: data.products,
+      });
 
-//   useEffect(() => {
-//     // already in global store
-//     if (products.length) {
-//       setCurrentProduct(products.find((product) => product._id === id));
-//     }
-//     // retrieved from server
-//     if (data) {
-//       dispatch({
-//         type: UPDATE_PRODUCTS,
-//         products: data.products,
-//       });
-
-//       data.products.forEach((product) => {
-//         idbPromise('products', 'put', product);
-//       });
-//     }
-//     // get cache from idb
-//     else if (!loading) {
-//       idbPromise('products', 'get').then((indexedProducts) => {
-//         dispatch({
-//           type: UPDATE_PRODUCTS,
-//           products: indexedProducts,
-//         });
-//       });
-//     }
-//   }, [products, data, loading, dispatch, id]);
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      });
+    }
+    // get cache from idb
+    else if (!loading) {
+      idbPromise('products', 'get').then((indexedProducts) => {
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts,
+        });
+      });
+    }
+  }, [products, data, loading, dispatch, id]);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
@@ -105,12 +106,6 @@ function Detail() {
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
             <button onClick={addToCart}>Add to Cart</button>
-            <button
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
-            </button>
           </p>
 
           <img
@@ -119,7 +114,7 @@ function Detail() {
           />
         </div>
       ) : null}
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
+      {loading ? <p>Loading Products</p> : null}
       <Cart />
     </>
   );
