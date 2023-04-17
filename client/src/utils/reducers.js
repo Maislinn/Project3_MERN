@@ -31,7 +31,12 @@
 //                 cartOpen: true,
 //                 cart: state.cart.map((cartItem) => {
 //                     if (
+<<<<<<< HEAD
 //                         action.cartItem.product._id === cartItem.product._id
+=======
+//                         action.cartItem.product._id === cartItem.product._id &&
+//                         action.cartItem.style.name === cartItem.style.name
+>>>>>>> rbk-debugCart
 //                     ) {
 //                         cartItem.quantity = action.cartItem.quantity;
 //                     }
@@ -78,6 +83,11 @@
 //     // localStorage.setItem('pet-pals-state', newState)
 //     // return newState
 // };
+<<<<<<< HEAD
+=======
+
+// 🦄 rbk: added reducers from client-origin
+>>>>>>> rbk-debugCart
 import { useReducer } from "react";
 import {
   UPDATE_PRODUCTS,
@@ -177,3 +187,7 @@ export const reducer = (state, action) => {
 export function useProductReducer(initialState) {
   return useReducer(reducer, initialState)
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> rbk-debugCart
