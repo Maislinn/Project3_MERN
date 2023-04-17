@@ -1,70 +1,27 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_PRODUCTS = gql`
-  {
+query GetProducts {
     products {
       _id
-      image
       name
+      image
       description
       price
       services
-      # 🦄 add category here if needed
     }
   }
-`;
+  `;
 
-// query GetProducts {
-//     getProducts {
-//         _id
-//         name
-//         images {
-//             original
-//             thumbnail
-//         }
-//         description
-//         notes
-//         styles {
-//             name
-//             price
-//             reducedPrice
-//             weight {
-//                 value
-//                 unit
-//             }
-//             height {
-//                 value
-//                 unit
-//             }
-//         }
-//     }
-// }
-
-//  ❄️ MX ⚠️: fields not match Product model. also check variables in SingleProduct.jsx file
 export const QUERY_SINGLE_PRODUCT = gql`
-  query GetProduct($id: ID!) {
-    getProduct(_id: $id) {
+query GetProduct($id: ID!) {
+    product(_id: $id) {
       _id
       name
-      images {
-        original
-        thumbnail
-      }
+      image
       description
-      # notes
-      styles {
-        name
-        price
-        reducedPrice
-        weight {
-          value
-          unit
-        }
-        # height {
-        #   value
-        #   unit
-        # }
-      }
+      price
+      services
     }
   }
 `;
