@@ -32,7 +32,7 @@ const Cart = () => {
     function calculateTotal() {
         let sum = 0;
         state.cart.forEach((cartItem) => {
-            sum += cartItem.style.price * cartItem.quantity;
+            sum += cartItem.price * cartItem.quantity;
         });
         return sum.toFixed(2);
     }
@@ -51,9 +51,9 @@ const Cart = () => {
                 [X]
             </div>
             <div>
-                {/* {state.cart.map((cartItem) => (
+                {state.cart.map((cartItem) => (
                     <CartItem key={cartItem.product._id} cartItem={cartItem} />
-                ))} */}
+                ))}
 
                 <div className='gap-5 '>
                     <strong>Total: ${calculateTotal()}</strong>

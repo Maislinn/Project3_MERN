@@ -5,6 +5,7 @@ import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
 
 
 const CartItem = ({ cartItem }) => {
+  console.log({cartItem})
 
   const [, dispatch] = useStoreContext();
 
@@ -38,7 +39,9 @@ const CartItem = ({ cartItem }) => {
   return (
     <div className="flex-row">
       <div>
-        <div>{cartItem.product.name}, ${cartItem.style.price}</div>
+        <div>{cartItem.product.name} on {cartItem.newValue.startDate} 
+        ${cartItem.product.price}
+        </div>
         <div>
           <span>Qty:{cartItem.quantity}</span>
           <span

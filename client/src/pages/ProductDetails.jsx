@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStoreContext } from "../utils/state";
 import { useQuery } from "@apollo/client";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
+import { idbPromise } from '../utils/helpers';
+
 
 import Datepicker from '../components/Datepicker';
 
@@ -24,58 +26,90 @@ export default function ProductDetails() {
         }
     });
 
-        function handleInput(event) {
-        if (event.target.value.length === 0) {
-            setQuantity(1)
-            return
-        }
-        const result = event.target.value.replace(/\D/g, "");
-        if (result) {
-            setQuantity(result);
-        }
-    }
+    //     function handleInput(event) {
+    //     if (event.target.value.length === 0) {
+    //         setQuantity(1)
+    //         return
+    //     }
+    //     const result = event.target.value.replace(/\D/g, "");
+    //     if (result) {
+    //         setQuantity(result);
+    //     }
+    // }
 
-    // Adding product to cart
-    function addToCart(amount) {
-        // Checking to see if a particular item is already in cart
-        const existingCartItem = cart.find(
-            (_item) =>
-                _item.product._id === id
-        );
-
-        if (existingCartItem) {
-            console.log("Update cart");
-            let quantity = 0;
-            if (amount) {
-                quantity =
-                    parseInt(existingCartItem.quantity) + parseInt(amount);
-            } else {
-                quantity = parseInt(existingCartItem.quantity) + 1;
-            }
-            dispatch({
-                type: UPDATE_CART_QUANTITY,
-                cartItem: {
-                    ...existingCartItem,
-                    quantity: quantity,
-                },
-            });
-            // If item is not already in the cart add one of item
-        } else {
-            console.log("add to cart");
-            let quantity = 1;
-            if (amount) {
-                quantity = parseInt(amount);
-            }
-            dispatch({
-                type: ADD_TO_CART,
-                cartItem: {
-                    product: product,
-                    style: selectedStyle,
-                    quantity: quantity,
-                },
-            });
-        }
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        cartItem: { 
+            product: product,
+            startDate: newValue.startDate, 
+            endDate: newValue.endDate,
+            purchaseQuantity: 1 },
+    });
+    console.log(product)
+      idbPromise('cart', 'put', { cartItem: { 
+        product: product,
+        startDate: newValue.startDate, 
+        endDate: newValue.endDate,
+        purchaseQuantity: 1 }
+    });
     }
+  };
+
+
+    // // Adding product to cart
+    // function addToCart(amount) {
+    //     // Checking to see if a particular item is already in cart
+    //     const existingCartItem = cart.find(
+    //         (_item) =>
+    //             _item.product._id === id
+    //     );
+
+    //     if (existingCartItem) {
+    //         console.log("Update cart");
+    //         let quantity = 0;
+    //         if (amount) {
+    //             quantity =
+    //                 parseInt(existingCartItem.quantity) + parseInt(amount);
+    //         } else {
+    //             quantity = parseInt(existingCartItem.quantity) + 1;
+    //         }
+    //         dispatch({
+    //             type: UPDATE_CART_QUANTITY,
+    //             cartItem: {
+    //                 ...existingCartItem,
+    //                 quantity: quantity,
+    //             },
+    //         });
+    //         // If item is not already in the cart add one of item
+    //     } else {
+    //         console.log("add to cart");
+    //         let quantity = 1;
+    //         if (amount) {
+    //             quantity = parseInt(amount);
+    //         }
+    //         dispatch({
+    //             type: ADD_TO_CART,
+    //             cartItem: {
+    //                 product: product,
+    //                 style: selectedStyle,
+    //                 quantity: quantity,
+    //             },
+    //         });
+    //     }
+    // }
 
 
     if (loading) {
@@ -117,9 +151,7 @@ export default function ProductDetails() {
                         <Datepicker />
                         <p className="m-5 [color:#979291]">  </p>
                         <button
-                            onClick={() => {
-                                addToCart(value);
-                            }}
+                            onClick={addToCart}
                             className=" [color:#f5bcb1] [background-color:#979291] font-bold
                             uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg 
                             outline-none focus:outline-no"

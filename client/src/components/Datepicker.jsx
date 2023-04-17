@@ -28,10 +28,8 @@ export default function Calendar() {
       <Datepicker
         asSingle={true}
         useRange={false}
-        showShortcuts={true}
         toggleClassName="absolute bg-pink-300 rounded-r-lg text-white right-0 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
-        // 🔮 enable showFooter for daterange picker only
-        // showFooter={true} 
+ 
         primaryColor={"pink"}
         placeholder={"Select date"}
         value={value}
