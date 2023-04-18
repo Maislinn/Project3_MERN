@@ -66,6 +66,7 @@ function SingleProduct() {
       onCompleted: function onCompleted(data) {
         if (data && data.getProduct) {
           setProduct(data.getProduct);
+          // ❄️ MX: ❓ ⤵️ no "styles" in the database
           setSelectedStyleName(data.getProduct.styles[0].name);
         }
       }
