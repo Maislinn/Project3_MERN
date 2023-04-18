@@ -19,21 +19,19 @@ function Detail() {
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({});
-  console.log("currentProduct:", currentProduct);
-
-  //   const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   const { products, cart } = state;
 
-  const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT);
+//   const { loading, error, data } = useQuery(QUERY_SINGLE_PRODUCT)
 
   useEffect(() => {
     // already in global store
     if (products.length) {
-      setCurrentProduct(products.find((product) => product._id === id));
+    setCurrentProduct(products.find((product) => product._id === id));
     }
     // retrieved from server
-    if (data) {
+    else if (data) {
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products,
@@ -112,7 +110,7 @@ function Detail() {
         </div>
       ) : null}
       {loading ? <p>Loading Products</p> : null}
-      <Cart />
+      {/* <Cart /> */}
     </>
   );
 }
