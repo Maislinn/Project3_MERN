@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = require("react");
+var _react = _interopRequireWildcard(require("react"));
 var _react2 = _interopRequireDefault(require("./assets/react.svg"));
 require("./App.css");
 var _client = require("@apollo/client");
@@ -17,11 +17,13 @@ var _Contact = _interopRequireDefault(require("./components/Contact"));
 var _Footer = _interopRequireDefault(require("./components/Footer"));
 var _Home = _interopRequireDefault(require("./pages/Home"));
 var _Profile = _interopRequireDefault(require("./pages/Profile"));
-var _SingleProduct = _interopRequireDefault(require("./pages/SingleProduct"));
+var _ProductDetails = _interopRequireDefault(require("./pages/ProductDetails"));
 var _OrderHistory = _interopRequireDefault(require("./components/OrderHistory"));
 var _PaymentForm = _interopRequireDefault(require("./components/PaymentForm"));
 var _Completion = _interopRequireDefault(require("./components/Completion"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -35,9 +37,9 @@ var httpLink = (0, _client.createHttpLink)({
   // uri: '/graphql',
   // credentials: 'same-origin'
   // prod - comment out when in dev
-  uri: 'https://petpal.herokuapp.com/graphql'
+  uri: '/graphql'
   // dev - comment out when deploying
-  //   uri: "http://localhost:3001/graphql",
+  //uri: "http://localhost:3001/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -60,35 +62,35 @@ var client = new _client.ApolloClient({
   cache: new _client.InMemoryCache()
 });
 function App() {
-  return /*#__PURE__*/React.createElement(_client.ApolloProvider, {
+  return /*#__PURE__*/_react.default.createElement(_client.ApolloProvider, {
     client: client
-  }, /*#__PURE__*/React.createElement("main", {
+  }, /*#__PURE__*/_react.default.createElement("main", {
     className: "flex flex-col min-h-screen"
-  }, /*#__PURE__*/React.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/React.createElement(_state.StoreProvider, null, /*#__PURE__*/React.createElement(_Header.default, null), /*#__PURE__*/React.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_state.StoreProvider, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/",
-    element: /*#__PURE__*/React.createElement(_Home.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_Home.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/products",
-    element: /*#__PURE__*/React.createElement(_Products.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_Products.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/productdetails/:id",
-    element: /*#__PURE__*/React.createElement(_SingleProduct.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_ProductDetails.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/orderhistory",
-    element: /*#__PURE__*/React.createElement(_OrderHistory.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_OrderHistory.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/contact",
-    element: /*#__PURE__*/React.createElement(_Contact.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_Contact.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/profile",
-    element: /*#__PURE__*/React.createElement(_Profile.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_Profile.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/payment",
-    element: /*#__PURE__*/React.createElement(_PaymentForm.default, null)
-  }), /*#__PURE__*/React.createElement(_reactRouterDom.Route, {
+    element: /*#__PURE__*/_react.default.createElement(_PaymentForm.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/completion",
-    element: /*#__PURE__*/React.createElement(_Completion.default, null)
-  })), /*#__PURE__*/React.createElement(_Footer.default, null)))));
+    element: /*#__PURE__*/_react.default.createElement(_Completion.default, null)
+  })), /*#__PURE__*/_react.default.createElement(_Footer.default, null)))));
 }
 var _default = App;
 exports.default = _default;

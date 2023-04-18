@@ -28,7 +28,10 @@ function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefine
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var SignUp = function SignUp(props) {
   var _useState = (0, _react.useState)({
-      username: "",
+      // ❄️ MX: updated below to match user model
+      // username: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: ""
     }),
@@ -91,14 +94,30 @@ var SignUp = function SignUp(props) {
     className: "mb-3 w-1/2"
   }, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "username"
-  }, "username"), /*#__PURE__*/_react.default.createElement("input", {
+  }, "First Name"), /*#__PURE__*/_react.default.createElement("input", {
     value: formState.name,
     onChange: handleChange,
     type: "text",
-    placeholder: "your username",
+    placeholder: "enter first name",
     id: "username",
-    className: "px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full",
-    name: "username"
+    className: "px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full"
+    // ❄️: changed first input to firstName
+    ,
+    name: "firstName"
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "mb-3 w-1/2"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "username"
+  }, "Last Name"), /*#__PURE__*/_react.default.createElement("input", {
+    value: formState.name,
+    onChange: handleChange,
+    type: "text",
+    placeholder: "enter last name",
+    id: "username",
+    className: "px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus: ring w-full"
+    // ❄️: changed second input to lastName
+    ,
+    name: "lastName"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "mb-3 w-1/2"
   }, /*#__PURE__*/_react.default.createElement("label", {
