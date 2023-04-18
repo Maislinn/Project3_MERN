@@ -20,6 +20,14 @@
 * [Deployment Link](#deployment-link)
 
 ## Installation
+To run the app locally, use these commands in your terminal once you have cloned the repository:
+
+```
+npm install;
+npm run build;
+npm run seed;
+npm run develop;
+```
 
 ## Features
 

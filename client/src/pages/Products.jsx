@@ -1,57 +1,62 @@
+import React, { useState, useEffect } from "react";
 import {
     Card,
-    CardHeader,
     CardBody,
-    CardFooter,
-    Typography,
     Button,
-    Tooltip,
-    IconButton,
 } from "@material-tailwind/react";
-import React from "react";
-import { QUERY_SINGLE_PRODUCT, QUERY_PRODUCTS } from "../utils/queries";
+import { useStoreContext } from '../utils/state';
+import { UPDATE_PRODUCTS } from '../utils/actions';
+import { QUERY_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
+import { idbPromise } from '../utils/helpers';
 
+export default function Products() {
+    const [state, dispatch] = useStoreContext();
+    const { currentCategory } = state;
 
-export default function Example() {
-    const [products, setProducts] = React.useState([]);
-    const { loading, error } = useQuery(QUERY_PRODUCTS, {
-        onCompleted: (data) => {
-            if (data && data.getProducts) {
-                setProducts(data.getProducts);
+    const { loading, data } = useQuery(QUERY_PRODUCTS);
+
+        useEffect(() => {
+            if (data) {
+              dispatch({
+                type: UPDATE_PRODUCTS,
+                products: data.products,
+              });
+              data.products.forEach((product) => {
+                idbPromise('products', 'put', product);
+              });
+            } else if (!loading) {
+              idbPromise('products', 'get').then((products) => {
+                dispatch({
+                  type: UPDATE_PRODUCTS,
+                  products: products,
+                });
+              });
             }
-        },
-    });
+          }, [data, loading, dispatch]);
+        
+          function filterProducts() {
+            if (!currentCategory) {
+              return state.products;
+            }
+        
+            return state.products.filter(
+              (product) => product.category._id === currentCategory
+            );
 
-    if (loading) {
-        return <h2>Loading</h2>;
     }
-
-    if (error) {
-        return <p>{error}</p>;
-    }
-
-    if (!products) {
-        return (
-            <>
-                <div className="m-10 flex flex-col justify-center align-center">
-                    <h1 className="text-center">Service Not Found</h1>
-                </div>
-            </>
-        );
-    }
-
     return (
         <div className="container justify-center flex flex-wrap">
-            {products.map((product) => {
+            {/* {!products && <p>{status}</p>} */}
+            {state.products && state.products.map((product) => {
                 return (
                     <Card key={product._id} className="w-full max-w-[26rem] shadow-lg m-10 rounded-md">
                         <CardBody className="[background-color:#f5bcb1] rounded-md">
                             <div className="mb-3">
                                 <img
-                                    src={`/${product.images[0].original}`}
-                                    alt={`${product.images[0].original}`}
+                                    src={`/imgs/${product.image}`}
+                                    alt={product.name}
                                     className="rounded-t-xl"
                                 ></img>
                                 <div className="font-medium [color:#979291]">

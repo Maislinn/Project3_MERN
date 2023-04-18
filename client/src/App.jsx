@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
@@ -18,7 +19,7 @@ import ContactForm from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import SingleProduct from "./pages/SingleProduct";
+import ProductDetails from "./pages/ProductDetails";
 import OrderHistory from "./components/OrderHistory";
 import PaymentForm from "./components/PaymentForm";
 import Completion from "./components/Completion";
@@ -30,9 +31,9 @@ const httpLink = createHttpLink({
   // uri: '/graphql',
   // credentials: 'same-origin'
   // prod - comment out when in dev
-  uri: 'https://petpal.herokuapp.com/graphql'
+  // uri: 'https://petpal.herokuapp.com/graphql'
   // dev - comment out when deploying
-//   uri: "http://localhost:3001/graphql",
+  uri: "http://localhost:3001/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -66,7 +67,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/productdetails/:id" element={<SingleProduct />} />
+              <Route path="/productdetails/:id" element={<ProductDetails />} />
               <Route path="/orderhistory" element={<OrderHistory />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/profile" element={<Profile />} />
