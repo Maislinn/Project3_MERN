@@ -6,9 +6,8 @@
   "scripts": {
     "start": "node server --ignore client",
     "develop": "concurrently \"cd server && npm run start\" \"cd client && npm run dev\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "install": "cd server && npm i",
+    "seed": "cd server && npm run seed"
 
   },
   "keywords": [],
