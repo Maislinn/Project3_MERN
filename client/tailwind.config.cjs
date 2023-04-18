@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [    "./index.html",
-  "./src/**/*.{js,jsx,ts,tsx}",
-  "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",],
+  content: {
+    relative: true,
+    files: [
+      "./index.html",
+      "./pages/*.{js,jsx}",
+      "./components/*.{js,jsx}",
+    ]
+},
   theme: {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
   ],
 }
