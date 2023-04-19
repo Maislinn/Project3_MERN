@@ -72,4 +72,4 @@ As UC Berkeley students and tech professionals, we want to continue our learning
 
 ## Deployment Link
 
-Deployed Link: (Coming soon)
+Deployed Link: https://petpal.herokuapp.com/
