@@ -43,7 +43,7 @@ function Reviews() {
                 {carouselData.map((data) => {
                     return (
                         <div className="card p-5 [background-color:#f5bcb1] h-full m-1 rounded">
-                            <img className=" rounded-md" src={data.image} alt="customer's trees" />
+                            <img className=" rounded-md" src={data.image} alt="images" />
                             <p className="pt-5">{data.text}</p>
                         </div>
                     );
